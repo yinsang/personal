@@ -1,0 +1,5 @@
+*{margin: 0;padding:0;}
+nav{position:relative;height:480px;width:100%;background:url(../img/1.jpg);background-size:cover;background-position: center; }
+nav>div{position:absolute;left:50%;top:50%;margin:-50px 0 0 -50px;}
+nav div div{background:url(../img/head.jpg);background-size:cover;border-radius: 50px;width:100px;height:100px;}
+nav h2{margin:auto 0;color:rgb(255,255,255);font-size:2em;line-height:2em;text-align: center;}
