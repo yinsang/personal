@@ -1,0 +1,11 @@
+*{margin:0;padding:0;}
+body{background:#AFEEEE;font-family:xujinglei;font-size:20px;}
+@font-face
+{font-family: xujinglei;src:url('../font/xjlFont.ttf')}
+.wrap{max-width: 1000px;margin:0 auto;}
+a{text-decoration: none;}
+.title{line-height: 3;border-bottom: 1px dashed rgb(120,120,120)}
+.main li{border-bottom: 1px dashed rgb(210,210,210);list-style:cjk-ideographic inside;height:50px;}
+.main li a{height:100%;display: block;line-height: 50px;}
+a{color:black;}
+a:hover{ background-image:linear-gradient(top,red,#4B0082)}
