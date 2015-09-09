@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+	
+    <!-- Bootstrap -->
+  
+  <style type="text/css">
+
+
+</style>
+<link href='css/test.css' type='text/css' rel='stylesheet'/>
+<script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/test.js" type="text/javascript" charset="utf-8"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  </head>
+<body id='textbody'>
+	<input type='file' value='浏览' />
+	<div class='alert1'></div>
+	<h3>shijinbumei</h3>
+	<div class="box4">
+		<img src="images/children.jpg"/>
+	</div>
+	<div class="jianbian">
+		
+	</div>
+	<input type="checkbox" name="" id="" value="" />复选框
+	<input type="file" name="" id="" value="" />未选择任何文件
+	<input type="password" name="" id="" value="" />密码
+	<input type="radio" name="" id="" value="" />单选
+	<input type="reset"  />
+	<input type="submit" />
+	<input type="text" name="" id="" value="" />
+<select name="">
+	<option selected="selected" value="a">a</option>
+	<option value="b">b</option>
+</select>
+<div class="userlogin">
+	<h2>用户登录</h2>
+	用户名：
+	<input type="text" name="" id="" value="" />
+	密码
+	<input type="text" name="" id="" value="" />
+	验证码
+	<input type="text" name="" id="" value="" />
+	<input type="checkbox" name="" id="" value="" />
+	记录我的登录信息
+	<input type="button" name="" id="" value="登录" />
+	<input type="button" name="" id="" value="用户注册" />
+	
+</div>
+	<!--<ul id='nav'>
+		<li>首页</li>
+		<li>关于我们
+			<ul>
+				<li>我们的故事</li>
+				<li>我们的团队</li>
+			</ul>
+		</li>
+		<li>我们的服务
+			<ul>
+				<li>网页设计</li>
+				<li>网页制作</li>
+				<li>程序开发</li>
+			</ul>
+		</li>
+		<li>联系我们
+			<ul>
+				<li>团队主力</li>
+				<li>团队成员</li>
+			</ul>
+		</li>
+	</ul>-->
+	<!--<form><fieldset>
+   		<legend>查询条件</legend>
+   		 身高：<input type='text'>
+	    
+   		
+   	</fieldset></form>
+	<canvas id="myCanvas" width="200" height="100"></canvas>-->
+	<p id='id1'>ppppp</p>
+	<script type="text/javascript">
+		document.write('<h1>This is my js</h1>')
+		function change(){
+			x=document.getElementById('demo')
+			x.innerHTML='hello javascript.'
+		}
+		function changeimage(){
+			element=document.getElementById('myimage');
+			if(element.src.match('children')){
+				element.src='images/new_pic.jpg'
+				element.style.border='black 1px solid'
+			}else{
+				element.src='images/children.jpg'
+				element.style.border='red 1px solid'
+			}
+		}
+		function password(){
+			x=document.getElementById('demo1').value
+			if(x=='yin'){
+				alert('密码正确')
+			}else{alert('密码错误')}
+			
+		}
+		document.write('s')
+		document.write('s	hell\word')	
+		var a=3;
+		var b=a+5;
+		document.write(b)
+		document.getElementById('id1').innerHTML=b;
+		var xiao='Gello world'
+		var da=xiao.toLowerCase()
+		document.write(da)
+		function cheng(a,b){
+			
+			return a*b
+		}
+		
+	</script>
+	
+	<p id='demo'>ali</p>
+<p id="myP"></p>
+
+<script>
+$(document).ready(function(){
+  $(".alert1").one("click",function(){
+   alert('1')
+  });
+});
+
+</script>
+
+<p><b>注释：</b>注释不会被执行。</p>
+<ul>
+	<li title='shenmgui' style='background:red;width:200px;height:200px;margin:10px;'><a title='wangzhi' href="http://www.baidu.com">baidu</a></li>
+	<li title='shenmgui' style='background:red;width:200px;height:200px;'><a title='wangzhi' href="http://www.baidu.com">baidu</a></li>
+</ul>
+<ul>
+	<li><img src="images/logo.jpg"/></li>
+</ul>
+<div class="red">
+	<a href="http://www.baidu.com">百度</a>
+	
+</div>
+<ul>
+	
+</ul>
+<ol>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+</ol>
+</body>
+</html>
