@@ -36,7 +36,7 @@ $(function(){
 	$('.inputTime').val(nowDate)
 	changeDate()
 	
-	function changeDate(inputTime){
+	function changeDate(){
 		//获取输入日期的相关数据
 		var inputTimeVal=$('.inputTime').val()
 		var inputTimeDayDate=inputTimeVal.split('-')
@@ -108,11 +108,11 @@ $(function(){
 	
 	$('.dataDayInner').click(function(){
 		var inputTimeVal=$('.inputTime').val()
-		var inputTimeDayDate=inputTimeVal.split('-')
-		var inputTime=new Date(inputTimeDayDate) 
-		var inputTimeWeekNum=inputTime.getDay();
-		var inputTimeYear=inputTime.getFullYear();
-		var inputTimeMonth=(inputTime.getMonth()+1).toString()
+	var inputTimeDayDate=inputTimeVal.split('-')
+	var inputTime=new Date(inputTimeDayDate) 
+	var inputTimeWeekNum=inputTime.getDay();
+	var inputTimeYear=inputTime.getFullYear();
+	var inputTimeMonth=(inputTime.getMonth()+1).toString()
 		$('.dataDayInner').css('background','#fff')
 		$(this).css('background','rgb(200,178,230)')
 		var DateMonth=inputTimeMonth
@@ -135,7 +135,6 @@ $(function(){
 		}else{
 			DateMonth=inputTimeMonth
 		}
-		$('.testText').val(typeof(DateYear))
 		var clickTimeDate=inputTimeYear+'-'+DateMonth.toString()+'-'+$(this).text().toString()
 		$('.inputTime').val(clickTimeDate)
 		$('.testBtn').click()
@@ -145,6 +144,41 @@ $(function(){
 		$('.inputTime').val($('.inputTime').val())
 		changeDate()
 		})
+	//获取输入日期的相关数据
+	var inputTimeVal=$('.inputTime').val()
+	var inputTimeDayDate=inputTimeVal.split('-')
+	var inputTime=new Date(inputTimeDayDate) 
+	var inputTimeWeekNum=inputTime.getDay();
+	var inputTimeYear=inputTime.getFullYear();
+	var inputTimeMonth=(inputTime.getMonth()+1).toString()
+	var inputTimeMonthName=dateMonthName[inputTimeMonth%12]	
+	var inputTimeDay=inputTime.getDate().toString()
+	$('.preButton').click(function(){
+		var preBtnMonth
+		if(inputTimeMonth==1){
+				preBtnMonth=12
+				inputTimeYear=inputTimeYear-1
+		}else(
+				preBtnMonth=Number(inputTimeMonth)-1
+		)
+		inputTimeMonth=preBtnMonth
+		$('.inputTime').val(inputTimeYear+'-'+preBtnMonth+'-'+inputTimeDay)
+		$('.testBtn').click()
+		return false
+	})
+	$('.nextButton').click(function(){
+		var nextBtnMonth
+		if(inputTimeMonth==12){
+				nextBtnMonth=1
+				inputTimeYear=inputTimeYear+1
+		}else(
+				nextBtnMonth=Number(inputTimeMonth)+1
+		)
+		inputTimeMonth=nextBtnMonth
+		$('.inputTime').val(inputTimeYear+'-'+nextBtnMonth+'-'+inputTimeDay)
+		$('.testBtn').click()
+		return false
+	})
 	
 	//测试专用!!!!!!!
 	
