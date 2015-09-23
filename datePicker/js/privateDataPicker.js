@@ -100,7 +100,7 @@ $(function(){
 			var inputTimeNextMonthDaysPosition=$('.dataDayInner').eq(inputTimeMonthFirstDayTimeWeekNum+inputTimeMonthDaysNum+n)
 				inputTimeNextMonthDaysPosition.text(1+n)
 				$('.dataDayInner').eq(inputTimeMonthFirstDayTimeWeekNum+inputTimeMonthDaysNum+n).addClass('currentNextMonth')
-				$('.currentNextMonth').css('background','pink')
+				$('.currentNextMonth').css('background','yellow')
 		}
 
 		
