@@ -1,0 +1,19 @@
+*{margin:0;padding:0;}
+.clearfix:before, .clearfix:after { content: ''; display: table; } .clearfix:after { clear: both; }
+.dataPicker{border:1px solid rgb(200,178,230);border-radius:4px;position:absolute;left:40px;padding:0.2em;}
+td{padding:1px;}
+tbody tr td a{display:block;text-decoration:none;border:1px solid #d3d3d3;color:#555;text-align:right;padding:0.2em;font-weight: bold}
+tbody tr td a:hover{border:1px solid rgb(200,178,230);color:#212121;}
+.header a,.header div{float:left;margin:0 auto;}
+.header .nextButton{float:right;}
+.header{padding:0.2em 0;background:rgb(200,178,230);border-radius: 4px;}
+.header a{width:1.5em;height:1.5em;position: relative;border-radius: 4px;}
+.header a:hover{background:#dadada;border-color:#999;}
+.icon{width:16px;height:16px;position: absolute;left:50%;top:50%;margin:-8px 0 0 -8px;display:block;background: url(../img/ui-icons_454545_256x240.png);}
+.preButton,.nextButton{vertical-align: middle}
+.preButton span{background-position:  -80px -192px;}
+.nextButton span{background-position:  -48px -192px;}
+.middleData{margin:2px;line-height: 1.5em;}
+.Sunday,.Saturday{color:red;}
+tbody tr td:first-child a ,tbody tr td:last-child a{color:red;}
+.sixthTbodyTr{visibility: visible;}
