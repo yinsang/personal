@@ -181,7 +181,7 @@ $(function(){
 	})
 	
 	//回车触发修改日期事件
-	$('body').enterSubmit(function(){
+	$('body').keydown(function(){
 		if(event.keyCode=='13'){
 			$('.testBtn').click();
 		}
