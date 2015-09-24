@@ -183,7 +183,7 @@ $(function(){
 	//回车触发修改日期事件
 	function enterSubmit(){
 		if(event.keyCode==13){
-			event.return.value=false;
+			event.returnValue=false;
 			document.getElementByClassName('testBtn').click()
 		}
 	}
