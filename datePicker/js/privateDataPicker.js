@@ -180,9 +180,13 @@ $(function(){
 		return false
 	})
 	
-	//测试专用!!!!!!!
-	
-	//左右调整月份的按钮实现
+	//回车触发修改日期事件
+	function enterSubmit(){
+		if(event.keyCode==13){
+			event.return.value=false;
+			document.getElementByClassName('testBtn').click()
+		}
+	}
 
 	
 
