@@ -183,7 +183,7 @@ $(function(){
 	//回车触发修改日期事件
 	$('body').enterSubmit(function(){
 		if(event.keyCode=='13'){
-			document.getElementByClassName('testBtn').click()
+			$('.testBtn').click();
 		}
 	})
 
