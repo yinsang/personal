@@ -1,4 +1,6 @@
 $(function(){
+	//var inputTimee=window.parent.document.getElementById(x)
+	//console.log(inputTimee)
 	//dateInput的点击触发datepicker
 	$('.dateInput').click(function(){
 		$('.datePicker').css('display','none')
@@ -17,20 +19,16 @@ $(function(){
 	var d=Date.parse("9 15, 2015")
 	var now=new Date();
 	var nowYear=now.getFullYear();
-	var nowMonth=(now.getMonth()+1).toString()
+	var nowMonth=now.getMonth()+1
 	var preMonth=nowMonth-1;
 	var nextMonth=nowMonth+1;
 	var nowMonthDays=dateMonthNum[nowMonth-1]
 	var preMonthDays=dateMonthNum[nowMonth-2];
 	var nextMonthDays=dateMonthNum[nowMonth];
-	var nowDay=now.getDate().toString()
+	var nowDay=now.getDate()
 	var nowDayEq=(now.getDate()+1).toString();
-	if (nowMonth.length==1){
-		nowMonth=0+nowMonth;
-	}
-	if (nowDay.length==1){
-		nowDay=0+nowDay;
-	}
+	nowMonth=checkTime(nowMonth)
+	nowDay=checkTime(nowDay)
 	var nowDate=nowYear+'-'+nowMonth+'-'+nowDay
 	
 	$('.inputTime').val(nowDate)
@@ -53,6 +51,7 @@ $(function(){
 		var inputTimepreMonthDays=dateMonthNum[inputTimeMonth-1];
 		var inputTimenextMonthDays=dateMonthNum[inputTimeMonth+1];
 		var inputTimeDaynum=Math.abs(inputTimeDay)
+
 		if (inputTimeMonth.length==1){
 			inputTimeMonth=0+inputTimeMonth;
 		}
@@ -100,7 +99,7 @@ $(function(){
 			var inputTimeNextMonthDaysPosition=$('.dataDayInner').eq(inputTimeMonthFirstDayTimeWeekNum+inputTimeMonthDaysNum+n)
 				inputTimeNextMonthDaysPosition.text(1+n)
 				$('.dataDayInner').eq(inputTimeMonthFirstDayTimeWeekNum+inputTimeMonthDaysNum+n).addClass('currentNextMonth')
-				$('.currentNextMonth').css('background','yellow')
+				$('.currentNextMonth').css('background','pink')
 		}
 
 		
@@ -179,14 +178,70 @@ $(function(){
 		$('.testBtn').click()
 		return false
 	})
-	
-	//回车触发修改日期事件
-	$('body').keydown(function(){
-		if(event.keyCode=='13'){
-			$('.testBtn').click();
-		}
+	$('.preYearButton').click(function(){
+		var nextBtnMonth
+		
+				inputTimeYear=inputTimeYear-1
+		$('.inputTime').val(inputTimeYear+'-'+inputTimeMonth+'-'+inputTimeDay)
+		$('.testBtn').click()
+		return false
 	})
+	$('.nextYearButton').click(function(){
+		var nextBtnMonth
+		
+				inputTimeYear=inputTimeYear+1
+		$('.inputTime').val(inputTimeYear+'-'+inputTimeMonth+'-'+inputTimeDay)
+		$('.testBtn').click()
+		return false
+	})
+	$("body").keydown(function() {
+             if (event.keyCode == "13") {//keyCode=13是回车键
+                 $('.testBtn').click();
+             }
+         });
 
+	
+	
+	//时分秒
+	//增加和减少按钮
+
+	$('.hour').addClass('clicked')
+	$('.hourMinSectime').click(function(){
+		$(this).addClass('clicked')
+		$(this).parent().siblings().find('.hourMinSectime').removeClass('clicked')
+	})
+	$('.hourMinSecAdd').click(function(){
+		var clickedNum=Number($('.clicked').val())
+		$('.clicked').val(clickedNum+1)
+	})
+	$('.hourMinSecReduce').click(function(){
+		var clickedNum=Number($('.clicked').val())
+		$('.clicked').val(clickedNum-1)
+	})
+	//实时显示时分秒
+	function startTime(){
+		var hour=now.getHours()
+		var minute=now.getMinutes()
+		var second=now.getSeconds()
+		minute=checkTime(minute)
+		second=checkTime(second)
+		$('.testText').text(hour+':'+minute+':'+second)
+		t=setTimeout('startTime()',500)
+	}
+	$('.testBtn2').click(function(){
+		var inputTimee=parent.$('testdiv1')
+							
+	
+		alert(inputTimee.html())
+	})
+	function checkTime(i){
+		if(i<10){
+			i='0'+i
+			return i
+		}else{
+			return i
+		}
+	}
 	
 
 
