@@ -4,24 +4,27 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link rel="stylesheet" type="text/css" href="css/privateDataPicker.css">
-</head>
-<body>
-	输入时间：<input class='inputTime' value='' type='text' />
-	<input type='button' class='testBtn' value='查询' />
-	数据：<input class='testText' value='' type='text' />
 
+</head>
+<body onload="startTime()">
+	输入时间：<input class='inputTime' value='' type='text' />
+	<input type='button' class='testBtn' id='testBtn' value='查询' />
+	数据：<div class='testText'>00000</div>
+	<div id="txt"></div>
+	<input type='button' class='testBtn2' id='' value='查询2' />
 	<script type="text/javascript">
-		
 	</script>
 	<div class='dataPicker'>
 		<div class='header clearfix'>
-			<a href="" class='preButton'><span class=' icon'>《</span></a>
+			<a href="" class='preYearButton'><span class=' icon'></span></a>
+			<a href="" class='preButton'><span class=' icon'></span></a>
 			<div class='middleData'>
 				<span class='dataPickerMonth'></span><span>月</span>
 				<span></span>
 				<span class='dataPickerYear'></span><span>年</span>
 			</div>
-			<a href=""class='nextButton'><span class=' icon'>》</span></a>
+			<a href=""class='nextButton'><span class=' icon'></span></a>
+			<a href="" class='nextYearButton'><span class=' icon'></span></a>
 		</div>
 		<table>
 			<thead>
@@ -92,8 +95,56 @@
 				</tr>
 			</tbody>
 		</table>
+		<div>
+			<div class='hourMinSecWrap clearfix'>
+				<span>时间：</span>
+				<div class='hourMinSec clearfix'>
+					<div><input class='hour hourMinSectime' value='17' maxlength="2" /></div>
+					<div class='colon'><input value=':' maxlength="2" /></div>
+					<div><input class='minute hourMinSectime' value='17' maxlength="2" /></div>
+					<div class='colon'><input value=':' maxlength="2" /></div>
+					<div><input class='second hourMinSectime' value='17' maxlength="2" /></div>
+					<div class='hourMinSecAddReduce'>
+						<input class='hourMinSecAdd' type='button' / >
+						<input class='hourMinSecReduce' type='button' />
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				
+			</div>
+			
+		</div>
+		
 	</div>
 	<script type="text/javascript" src='js/jquery-2.1.4.min.js'></script>
 	<script type="text/javascript" src='js/privateDataPicker.js'></script>
+	<script type="text/javascript">
+		//实时显示时分秒
+		function startTime()
+		{
+		var today=new Date()
+		var h=today.getHours()
+		var m=today.getMinutes()
+		var s=today.getSeconds()
+		m=checkTime(m)
+		s=checkTime(s)
+		// add a zero in front of numbers<10
+		document.getElementById('txt').innerHTML=h+":"+m+":"+s
+		$('.hour').val(h)
+		$('.minute').val(m)
+		$('.second').val(s)
+
+		}
+		function checkTime(i){
+		if(i<10){
+			i='0'+i
+			return i
+		}else{
+			return i
+		}
+	}
+	</script>
 </body>
 </html>
