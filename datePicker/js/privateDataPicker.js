@@ -223,8 +223,9 @@ $(function(){
 		second=checkTime(second)
 		$('.testText').text(hour+':'+minute+':'+second)
 	}
-	$('.testBtn2').click(function(){
-		startTime()
+	$('.testBtn1').click(function(){
+		var statisDate = $('#inputTimee', window.parent.document).html()
+          alert(statisDate)
 	})
 	function checkTime(i){
 		if(i<10){
