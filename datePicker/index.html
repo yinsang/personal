@@ -6,15 +6,16 @@
 	<link rel="stylesheet" type="text/css" href="css/privateDataPicker.css">
 
 </head>
-<body onload="startTime()">
-	输入时间：<input class='inputTime' value='' type='text' />
-	<input type='button' class='testBtn' id='testBtn' value='查询' />
-	数据：<div class='testText'>00000</div>
-	<div id="txt"></div>
-	<input type='button' class='testBtn2' id='' value='查询2' />
-	<script type="text/javascript">
-	</script>
-	<div class='dataPicker'>
+<body onload="startTime()" class='clearfix'>
+	
+	<div class='datepickerwrap clearfix'>
+		<div class='clearfix'>
+		<input class='inputTime' id='inputTime' maxlength="15" value='' type='text' />
+		<input type='button' class='testBtn' id='testBtn' value='查询' />
+		<input type='button' class='hide' id='hide' value='隐藏' />
+		<div id="txt"></div>
+		</div>
+		<div class='dataPicker'>
 		<div class='header clearfix'>
 			<a href="" class='preYearButton'><span class=' icon'></span></a>
 			<a href="" class='preButton'><span class=' icon'></span></a>
@@ -23,8 +24,8 @@
 				<span></span>
 				<span class='dataPickerYear'></span><span>年</span>
 			</div>
-			<a href=""class='nextButton'><span class=' icon'></span></a>
 			<a href="" class='nextYearButton'><span class=' icon'></span></a>
+			<a href=""class='nextButton'><span class=' icon'></span></a>
 		</div>
 		<table>
 			<thead>
@@ -109,6 +110,8 @@
 						<input class='hourMinSecReduce' type='button' />
 					</div>
 				</div>
+				<input class='reset' type='button' value='刷新' />
+				<input class='submitBtn' type='button' value='确定' />
 			</div>
 			
 			<div>
@@ -118,25 +121,46 @@
 		</div>
 		
 	</div>
+	</div>
+	
 	<script type="text/javascript" src='js/jquery-2.1.4.min.js'></script>
 	<script type="text/javascript" src='js/privateDataPicker.js'></script>
 	<script type="text/javascript">
 		//实时显示时分秒
+		var today
+		var todayHour
+		var todayMinute
+		var todaySecond
 		function startTime()
 		{
 		var today=new Date()
-		var h=today.getHours()
-		var m=today.getMinutes()
-		var s=today.getSeconds()
-		m=checkTime(m)
-		s=checkTime(s)
+		var todayHour=today.getHours()
+		var todayMinute=today.getMinutes()
+		var todaySecond=today.getSeconds()
+		todayMinute=checkTime(todayMinute)
+		todaySecond=checkTime(todaySecond)
 		// add a zero in front of numbers<10
-		document.getElementById('txt').innerHTML=h+":"+m+":"+s
-		$('.hour').val(h)
-		$('.minute').val(m)
-		$('.second').val(s)
-
+		document.getElementById('txt').innerHTML=todayHour+":"+todayMinute+":"+todaySecond
+		t=setTimeout('startTime()',500)
 		}
+		var today=new Date()
+		var todayHour=today.getHours()
+		var todayMinute=today.getMinutes()
+		var todaySecond=today.getSeconds()
+		todayMinute=checkTime(todayMinute)
+		todaySecond=checkTime(todaySecond)
+		$('.hour').val(todayHour)
+		var chooseHour=$('.hour').val()
+		$('.minute').val(todayMinute)
+		var chooseMinute=$('.minute').val()
+		$('.second').val(todaySecond)
+		var chooseSecond=$('.second').val()
+		$('.submitBtn').click(function(){
+			var val=$('.inputTime').val()
+			$('.inputTime').val(val.substr(0,10))
+			var chooseTime=chooseHour+":"+chooseMinute+":"+chooseSecond
+			$('.inputTime').val($('.inputTime').val()+' '+chooseTime)
+		})
 		function checkTime(i){
 		if(i<10){
 			i='0'+i
