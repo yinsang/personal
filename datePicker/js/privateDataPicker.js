@@ -1,6 +1,4 @@
 $(function(){
-	//var inputTimee=window.parent.document.getElementById(x)
-	//console.log(inputTimee)
 	//dateInput的点击触发datepicker
 	$('.dateInput').click(function(){
 		$('.datePicker').css('display','none')
@@ -33,7 +31,6 @@ $(function(){
 	
 	$('.inputTime').val(nowDate)
 	changeDate()
-	
 	function changeDate(){
 		//获取输入日期的相关数据
 		var inputTimeVal=$('.inputTime').val()
@@ -51,7 +48,6 @@ $(function(){
 		var inputTimepreMonthDays=dateMonthNum[inputTimeMonth-1];
 		var inputTimenextMonthDays=dateMonthNum[inputTimeMonth+1];
 		var inputTimeDaynum=Math.abs(inputTimeDay)
-
 		if (inputTimeMonth.length==1){
 			inputTimeMonth=0+inputTimeMonth;
 		}
@@ -99,7 +95,7 @@ $(function(){
 			var inputTimeNextMonthDaysPosition=$('.dataDayInner').eq(inputTimeMonthFirstDayTimeWeekNum+inputTimeMonthDaysNum+n)
 				inputTimeNextMonthDaysPosition.text(1+n)
 				$('.dataDayInner').eq(inputTimeMonthFirstDayTimeWeekNum+inputTimeMonthDaysNum+n).addClass('currentNextMonth')
-				$('.currentNextMonth').css('background','pink')
+				$('.currentNextMonth').css('background','yellow')
 		}
 
 		
@@ -226,13 +222,9 @@ $(function(){
 		minute=checkTime(minute)
 		second=checkTime(second)
 		$('.testText').text(hour+':'+minute+':'+second)
-		t=setTimeout('startTime()',500)
 	}
 	$('.testBtn2').click(function(){
-		var inputTimee=parent.$('testdiv1')
-							
-	
-		alert(inputTimee.html())
+		startTime()
 	})
 	function checkTime(i){
 		if(i<10){
@@ -242,8 +234,10 @@ $(function(){
 			return i
 		}
 	}
-	
-
-
-	
+	/*$('.inputTime').focus(function(){
+		$('.dataPicker').css('display','block')
+	})
+	$('.hide').click(function(){
+		$('.dataPicker').css('display','none')
+	})*/
 })
