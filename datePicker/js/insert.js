@@ -29,11 +29,10 @@ function onceinsertFunction(x){
 
 $(function(){
 	$('.testIframe').click(function(){
-		var statisDate =$('#myframe')[0].contentWindow.document.getElementById('inputTime').innerHTML
-		console.log(statisDate)
+		var statisDate = document.getElementById("myframe").contentWindow.document.getElementById('inputTimee').innerHTML
+		 var htm=$('#inputTimee').val()
+          alert(htm)
 	})
-	/*$(document).on('focus','#inputTimee',function(){
-		var statisDate = document.getElementById("myframe").contentWindow.document.getElementById('inputTime').innerHTML
-			alert(statisDate)
-	})*/
+	
 })
+
