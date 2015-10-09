@@ -29,9 +29,9 @@ function onceinsertFunction(x){
 
 $(function(){
 	$('.testIframe').click(function(){
-		var statisDate = document.getElementById("myframe").contentWindow.document.getElementById('inputTimee').innerHTML
-		 var htm=$('#inputTimee').val()
-          alert(htm)
+		var statisDate = document.getElementById("myframe").contentWindow.document.getElementById('inputTime').innerHTML
+		 $('#inputTimee').val(statisDate)
+       
 	})
 	
 })
