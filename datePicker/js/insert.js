@@ -18,7 +18,7 @@ function onceinsertFunction(x){
 				inputTime.focus(function(){
 					$('.dataPicker').css('display','block')
 				})
-			document.getElementById("createDiv").innerHTML ='<iframe id="myframe" style="width:400px;height:400px;" src=" ../datapicker/datapicker.html"> <p>Your browser does not support iframes.</p></iframe>'
+			document.getElementById("createDiv").innerHTML ='<iframe id="myframe" style="width:400px;height:400px;" src=" ../datePicker/datapicker.html"> <p>Your browser does not support iframes.</p></iframe>'
 		}else{
 			return false
 		}
