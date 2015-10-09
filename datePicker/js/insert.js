@@ -1,5 +1,5 @@
 $(function(){
-	$('head').html($('head').html()+'<link rel="stylesheet" type="text/css" href="../datapicker/css/privateDataPicker.css">')
+	$('head').html($('head').html()+'<link rel="stylesheet" type="text/css" href="../datePicker/css/privateDataPicker.css">')
 	
 			/*var statisDate = document.getElementById("myframe").contentWindow.document.getElementById('inputTime').innerHTML
 			console.log(statisDate)*/
