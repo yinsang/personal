@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>JS Bin</title>
+	<meta charset="UTF-8">
+	<title>对文本节点和元素节点的研究</title>
+
 </head>
-<body>
-  <p>yong</p>
-</body>
-  <script type="text/javascript">
+<body >
+	<p>sssssss</p>
+	<script type="text/javascript" src='jquery-2.1.4.min.js'></script>
+	<script type="text/javascript">
 	window.onload=function(){
-		var inp2=document.getElementsByTagName('body')[0].getElementsByTagName('p')[0].innerHTML
-		var inp3=document.getElementsByTagName('body')[0].firstChild.innerHTML
-		console.log(inp2)
-		console.log(inp3)
+		var inp2=document.getElementsByTagName('body')[0].getElementsByTagName('p')[0]
+		var inp3=document.getElementsByTagName('body')[0].firstChild
+		console.log(inp3.nextSibling)
+		console.log(inp3.nextSibling.nextSibling)
+		//文本节点和元素节点表示同一个p，但是p节点是元素节点，有innerHTML可以获取到内容，而文本节点无法获取到内容。
+		//文本节点和元素节点同级，父节点均是body节点，text节点存在于元素节点前，用nextSibling可以得到。似乎每个元素节点都有文本节点存在于自己前面。文本节点获取文本，用nextSiblings获取下一个节点，再获取innerHTML就可以了。
 	}
 	</script>
+	
+</body>
 </html>
