@@ -7,8 +7,7 @@
 </head>
 <body >
 	
-	<input class='test' id='limitLength' data-model='Ch' data-length='5' type='text' value=''/>
-	<input class='test' id='banNumber' data-model='Ch' data-length='5' type='text' value=''/>
+	最多输入5个字符，英文算一个，中文算两个：<input class='test' id='banNumber' data-model='Ch' data-length='5' type='text' value=''/>
 	<script type="text/javascript" src='jquery-2.1.4.min.js'></script>
 	<script type="text/javascript">
 	window.onload=function(){
@@ -17,6 +16,7 @@
 			var _v=tThis.value
 			var _vLength=_v.length
 			vv=_v.match(/[\u4e00-\u9fa5]/g)
+			//此处如果不进行此null判断，会造成vv中无中文时读不出length。源文件在超实用js系列2.9中
 			if(vv==null){
 				var vvLength=0
 			}else{
