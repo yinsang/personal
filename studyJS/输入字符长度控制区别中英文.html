@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body >
+	
+	<input class='test' id='limitLength' data-model='Ch' data-length='5' type='text' value=''/>
+	<input class='test' id='banNumber' data-model='Ch' data-length='5' type='text' value=''/>
+	<script type="text/javascript" src='jquery-2.1.4.min.js'></script>
+	<script type="text/javascript">
+	window.onload=function(){
+		var inp=document.getElementById('banNumber')
+		var func=function(tThis){
+			var _v=tThis.value
+			var _vLength=_v.length
+			vv=_v.match(/[\u4e00-\u9fa5]/g)
+			if(vv==null){
+				var vvLength=0
+			}else{
+				var vvLength=vv.length
+			}
+			if(vvLength>0){
+				_vLength=_vLength+vvLength
+			}else{
+				_vLength=_vLength
+			}
+			var _vNeededLength=tThis.getAttribute('data-length')
+			if(_vLength>_vNeededLength)
+				tThis.value=_v.substr(0,_vNeededLength)
+		}
+		inp.onkeyup=function(){
+			func(this)
+		}
+		inp.onblur=function(){
+			func(this)
+		}
+	}
+	</script>
+	
+</body>
+</html>
