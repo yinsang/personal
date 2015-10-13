@@ -16,7 +16,7 @@
 			var _v=tThis.value
 			var _vLength=_v.length
 			vv=_v.match(/[\u4e00-\u9fa5]/g)
-			//此处如果不进行此null判断，会造成vv中无中文时读不出length。源文件在超实用js系列2.9中，他的验证方式太麻烦，我这种很简单，不知有没有什么bug=。=以后再讲
+			//此处如果不进行此null判断，会造成vv中无中文时读不出length。源文件在超实用js系列2.9中，他的验证太麻烦，我这种很简单，不知有没有什么bug=。=以后再讲
 			if(vv==null){
 				var vvLength=0
 			}else{
