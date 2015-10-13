@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>对文本节点和元素节点的研究</title>
+	<title>studyJS</title>
 
 </head>
 <body >
 	<p>sssssss</p>
 	最多输入5个字符，英文算一个，中文算两个：<input class='test' id='banNumber' data-model='Ch' data-length='5' type='text' value=''/>
+	//对文本节点和元素节点的研究
 	<script type="text/javascript">
 	window.onload=function(){
 		var inp2=document.getElementsByTagName('body')[0].getElementsByTagName('p')[0]
@@ -18,6 +19,7 @@
 		//文本节点和元素节点同级，父节点均是body节点，text节点存在于元素节点前，用nextSibling可以得到。似乎每个元素节点都有文本节点存在于自己前面。文本节点获取文本，用nextSiblings获取下一个节点，再获取innerHTML就可以了。
 	}
 	</script>
+	//输入字符长度控制区别中英文
 	<script type="text/javascript">
 	window.onload=function(){
 		var inp=document.getElementById('banNumber')
