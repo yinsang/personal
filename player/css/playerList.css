@@ -8,4 +8,5 @@ a{text-decoration: none;}
 .main li{border-bottom: 1px dashed rgb(210,210,210);list-style:cjk-ideographic inside;height:50px;}
 .main li a{height:100%;display: block;line-height: 50px;}
 a{color:black;}
-a:hover{ background-image:linear-gradient(top,red,#4B0082)}
+a:hover{ background-image:linear-gradient(-90deg,rgba(0,255,255,0.5),rgba(247,105,105,1));color:rgb(255,255,255); }
+/*a:hover{ background-image:linear-gradient(-90deg,rgba(0,255,255,0.5),rgba(247,105,105,1)); color:rgb(255,255,255); }*/

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+.b1,.b2,.b3,.b4,.b1b,.b2b,.b3b,.b4b,.b{display:block;overflow:hidden;}
+.b1,.b2,.b3,.b1b,.b2b,.b3b{height:1px;}
+.b2,.b3,.b4,.b2b,.b3b,.b4b,.b{border-left:1px solid #999;border-right:1px solid #999;}
+.b1,.b1b{margin:0 5px;background:#999;}
+.b2,.b2b{margin:0 3px;border-width:2px;}
+.b3,.b3b{margin:0 2px;}
+.b4,.b4b{height:2px;margin:0 1px;}
+.d1{background:#F7F8F9;}
+.k {height:100;}
+</style>
+<style>
+	.br1{background: #333;margin:0 5px;}
+	.br2{margin:0 3px;}
+	.br3{margin:0 2px;}
+	.br4{margin:0 1px;}
+	.br{height:1px;}
+	.br1,.br2,.br3,.br4{background:#fff;border-left: 1px solid #333;;border-right: 1px solid #333;}
+	div.br1{background:#333;}
+	div.cont{border-left: 1px solid #333;border-right: 1px solid #333;}
+</style>
+<style>
+	.left{width:400px;height:400px;float: left;background: red}
+	.center{margin-right:400px;height:400px;background: blue;}
+	.right{width:400px;height:400px;background: pink;float: right;}
+</style>
+</head>
+<body>
+<div>
+  <div class="b1"></div>
+  <div class="b2 d1"></div>
+  <div class="b3 d1"></div>
+  <div class="b4 d1"></div>
+  <div class="b d1 k">Content goes here</div>
+  <div class="b4b d1"></div>
+  <div class="b3b d1"></div>
+  <div class="b2b d1"></div>
+  <div class="b1b"></div>
+</div>
+<br />
+<div>
+	<div class="br br1"></div>
+	<div class="br br2"></div>
+	<div class="br br3"></div>
+	<div class="br br4"></div>
+	<div class="cont">content goes here</div>
+	<div class="br br4"></div>
+	<div class="br br3"></div>
+	<div class="br br2"></div>
+	<div class="br br1"></div>
+
+</div>
+<div>
+	<div class="left">1</div>
+	
+	<div class="right">3</div>
+	<div class="center">2</div>
+</div>
+</body>
+</html>

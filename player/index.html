@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>我的音乐</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <link rel="shortcut icon" href="http://lingyansi.github.io/images/icon/icon.jpg">
+		<link rel="stylesheet" type="text/css" href="css/playerList.css"/>
+	</head>
+	<body>
+		<div class="wrap" id='wrap'>
+			<div class='main'>
+				<h2 class='title'>List</h2>
+				<ul class="playerList">
+				</ul>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../js/jquery-2.1.4.js"></script>
+		<script type="text/javascript" src="js/util.js"></script>
+		<script type="text/javascript">
+		window.onload = function(){
+			for(var i = 0; i < listArr.length;i++){
+				$(".playerList").append('<li class="playListLi" data-id="'+listArr[i].id+'">'+'<a href="player.html" target = "xiami" target = "_blank">'+listArr[i].songName[0].name+' -- '+listArr[i].singer[0].name+'</a>'+'</li>')
+			}
+		}
+			
+			// $(".playerList").html(listArr.map(function(ele,index){
+			// 	return '<li data-id="'+ele.id+'">'+
+			// 				'<a href="" target = "xiami" target = "_blank">'+ele.songName[0].name+' -- '+ele.singers[0].name+'</a>'+
+			// 				'</li>'
+			// }).join(""))
+			// console.log(listArr.map(function(ele,index){
+			// 	return '<li data-id="'+ele.id+'">'+
+			// 				'<a href="" target = "xiami" target = "_blank">'+ele.songName[0].name+' -- '+ele.singers[0].name+'</a>'+
+			// 				'</li>'
+			// }))
+			$("body").on("click",".playListLi",function(event){
+				var _thisId = $(this).attr("data-id")
+				var id = parseInt(_thisId)
+				if(!!id){
+					localStorage.setItem("currentId",id)
+					console.log(localStorage)
+					if (localStorage.isPlayerOpen == 'true')
+					{
+						event.preventDefault();
+					}
+				}
+			})
+
+
+			console.log(localStorage)
+
+		</script>
+	</body>
+</html>

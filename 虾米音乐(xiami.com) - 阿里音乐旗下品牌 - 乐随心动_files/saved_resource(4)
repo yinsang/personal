@@ -1,0 +1,921 @@
+var $loading = $('<img class="load_feed loading" src="http://img.xiami.net/res/img/default/loading2.gif" width="16" height="11" />');
+var $loading2 = $('<img class="loading" src="http://img.xiami.net/res/img/default/loading2.gif" width="16" height="11" />');
+
+var getBrowser = function() {
+    var s = navigator.userAgent.toLowerCase();
+    var a = new Array("msie", "firefox", "safari", "opera", "netscape");
+    for (var i = 0; i < a.length; i++) {
+        if (s.indexOf(a[i]) != -1) {
+            return a[i];
+        }
+    }
+    return "other";
+};
+
+var openShark = function(url) {	
+	var isMac = (navigator.userAgent.toLowerCase().indexOf("macintosh") != -1 || navigator.userAgent.toLowerCase().indexOf("mac os x") != -1),
+		xmusicInstalled = false,
+		softURL = '';
+	if (!url) {
+		url = 'emumo://';
+	}
+	try {
+		var temp = document.getElementById('plugin0').valid;
+		if(temp){
+			xmusicInstalled = true;
+			delete temp;
+		}
+	}
+	catch(e) {}
+	if (isMac) {
+		softURL = '/software/shark#mac';
+		url = 'emumo://';
+	}
+	else {
+		softURL = '/apps/win';
+		if (!xmusicInstalled) {
+			url = '';
+		}
+	}
+	var popupStr = '<h3>提示</h3>\
+					<div class="dialog_content">\
+						<p class="alert">\
+							<iframe style="display:none;" src="'+url+'"></iframe>\
+							<span>客户端已启动，如未启动，请先安装虾米音乐客户端软件。</span>\
+							<a class="button major" href="'+softURL+'" target="_blank">安装客户端</a>\
+						</p>\
+					</div>\
+					<a class="Closeit" href="javascript:void(0);" title="关闭" onclick="closedialog();">关闭</a>';
+	showDialog('', popupStr);
+};
+
+//弹窗
+//ie6下高度的问题
+var dialogbg = function() {
+    if (getBrowser() == 'msie') {
+        $('.dialog_sharp').height($('.dialog_main').height());
+    }
+};
+
+function showDialog(url, ajaxText) {
+    if (!$('.dialog_popup').length) {
+        $('body').prepend('<div id="dialog_clt" class="dialog_popup"><div class="dialog_main"></div><div class="jqDrag"></div></div>');
+    }
+    if (!ajaxText) ajaxText = '<div class="dialog_content"><p class="loading">虾小米正为您在处理数据, 请稍候...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div><a href="" class="jqmClose">关闭</a>';
+    if (!url) {
+        $('.dialog_main').html(ajaxText);
+    } else {
+        url += (url.match(/\?/) ? "&" : "?") + "_xiamitoken=" + _xiamitoken;
+    }
+    $('.dialog_popup').jqm({
+        ajax: url,
+        modal: true,
+        target: '.dialog_main',
+        ajaxText: ajaxText,
+        onLoad: function() {
+           $('.dialog_popup').show().css({
+                'margin-left': '-' + $('.dialog_main').width() / 2 + 'px',
+                'margin-top': '-' + $('.dialog_main').height() / 2 + 'px'
+            });
+            /* hold for webkit render */
+        	setTimeout(function() {
+	            $('.dialog_popup').show().css({
+	                'margin-left': '-' + $('.dialog_main').width() / 2 + 'px',
+	                'margin-top': '-' + $('.dialog_main').height() / 2 + 'px'
+	            });
+        	}, 200);
+        },
+        onShow: function() {
+           $('.dialog_popup').show().css({
+                'margin-left': '-' + $('.dialog_main').width() / 2 + 'px',
+                'margin-top': '-' + $('.dialog_main').height() / 2 + 'px'
+            });
+        },
+        onHide: function() {
+            $('.dialog_popup').css({
+                'margin-left': '-130px',
+                'margin-top': '-25px',
+                'top': '50%',
+                'left': '50%'
+            }).hide();
+            $('.jqmOverlay').hide();
+        }
+    }).jqDrag('.jqDrag').jqmShow();
+}
+
+function showAlert(url, ajaxText, jumpurl, doaction) {
+    if (!$('.dialog_popup').length) {
+        $('body').prepend('<div id="dialog_clt" class="dialog_popup"><div class="dialog_main"></div><div class="jqDrag"></div></div>');
+    }
+    if (!ajaxText) ajaxText = '<div class="dialog_content"><p class="loading">虾小米正为您在处理数据, 请稍候...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div><a href="" class="jqmClose">关闭</a>';
+    if (!url) {
+        $('.dialog_main').html('<h3>提示</h3><div class="dialog_content"><p class="alert"><span>' + ajaxText + '</span><a class="button major" href="' + jumpurl + '" onclick="' + doaction + '">确定</a></p></div><a href="" class="jqmClose">关闭</a>');
+    } else {
+        url += (url.match(/\?/) ? "&" : "?") + "_xiamitoken=" + _xiamitoken;
+    }
+    $('.dialog_popup').jqm({
+        ajax: url,
+        json: true,
+        tmpl: '<h3>提示</h3><div class="dialog_content"><p class="alert"><span>${message}</span><a class="button major" href="${jumpurl}">确定</a></p></div><a href="" class="jqmClose">关闭</a>',
+        modal: true,
+        target: '.dialog_main',
+        ajaxText: ajaxText,
+        onShow: function() {
+            $('.dialog_popup').show().css({
+                'margin-left': '-' + $('.dialog_main').width() / 2 + 'px',
+                'margin-top': '-' + $('.dialog_main').height() / 2 + 'px'
+            });
+        },
+        onHide: function() {
+            $('.jqmOverlay').hide();
+            $('.dialog_popup').css({
+                'margin-left': '-130px',
+                'margin-top': '-25px',
+                'top': '50%',
+                'left': '50%'
+            }).hide();
+        }
+    }).jqDrag('.jqDrag').jqmShow();
+}
+
+function closedialog() {
+    $('.dialog_popup').jqmHide();
+}
+
+
+
+// 收藏
+// 3，歌曲
+// 4，精选集
+// 5，专辑
+// 6，艺人
+
+function tag(id, type) {
+    var url = '/music/tag/type/' + encodeURIComponent(type) + '/id/' + encodeURIComponent(id);
+    showDialog(url);
+}
+
+// 专辑添加到精选集
+
+function album2collect(id) {
+    var url = '/song/collects/c/2/ids/' + encodeURIComponent(id);
+    showDialog(url);
+}
+
+// 推荐
+// 32，歌曲
+// 33，专辑
+// 34，艺人
+// 35，精选集
+// 36，歌曲评论
+// 37，专辑评论
+// 38，艺人评论
+// 39，精选集评论
+// 310， 小组话题
+// 311，用户
+// 312，小组
+
+function recommend(id, type, sid) {
+    var url = '/recommend/post';
+    var url = url + '?object_id=' + encodeURIComponent(id) + "&type=" + encodeURIComponent(type) + "&t=" + 1000 * Math.random();
+    if (sid) var url = url + '&sid=' + encodeURIComponent(sid);
+    showDialog(url);
+}
+var getFlashVersion = function() {
+    var nav = navigator,
+        version = 0,
+        flash;
+    if (nav.plugins && nav.mimeTypes.length) {
+        flash = navigator.plugins["Shockwave Flash"];
+        if (flash) {
+            version = flash.description.replace(/.*\s(\d+\.\d+).*/, "$1");
+        }
+    } else {
+        try {
+            flash = new window.ActiveXObject("ShockwaveFlash.ShockwaveFlash");
+            if (flash) {
+                version = flash.GetVariable("$version")
+            }
+        } catch (e) {}
+    }
+    if (version !== 0) {
+        var fv = version.match(/\d+/g);
+        if (fv.length > 0) {
+            var v = fv.join('.')
+            getFlashVersion = function() {
+                return v
+            };
+            return v;
+        }
+    }
+    return version;
+};
+
+function getInternetExplorerVersion() {
+    var rv = -1,
+        ua = navigator.userAgent;
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    } else if (navigator.appName == 'Netscape') {
+        var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    return rv;
+}
+
+function getOperaVersion() {
+    var rv = -1,
+        ua = navigator.userAgent;
+    if (navigator.appName == 'Opera') {
+        var re = new RegExp("Opera\/.*Version\/([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    return rv;
+}
+// 获取 flash core
+
+function thisMovie(name) {
+    var ie = getInternetExplorerVersion();
+    if (ie != -1 && ie <= 9) {
+        thisMovie = function(name) {
+            return window[name];
+        }
+        return window[name];
+    } else {
+        thisMovie = function(name) {
+            return document.getElementById(name);
+        }
+        return document.getElementById(name)
+    }
+};
+/**
+ * 统计打点
+ */
+
+function transclick(val, type) {
+    var n = 'log_' + (new Date()).getTime();
+    var url = 'http://www.xiami.com/blank.gif';
+    var data = [
+        'f=seiya',
+        't=' + type,
+        'fv=' + getFlashVersion(),
+        'bm_an=' + navigator.appName,
+        'v=' + val,
+        '_=' + (new Date()).getTime()
+    ];
+    var req = window[n] = new Image();
+    req.onload = req.onerror = function() {
+        window[n] = null;
+    };
+    req.src = url + '?' + data.join('&')
+    req = null;
+};
+// 添加歌曲
+function addSongs(str) {
+    var playerTrigger = thisMovie('trans');
+    if (typeof(playerTrigger.addSongs) === "function") {
+        playerTrigger.addSongs(str);
+        transclick(str, "add");
+    } else {
+        setTimeout(function() {
+            if (typeof(playerTrigger.addSongs) === "function") {
+                playerTrigger.addSongs(str);
+                transclick(str, "add");
+            } else {
+                openOldMusicPlayer(str);
+            }
+        }, 500);
+    }
+}
+
+// 下载歌曲
+
+function xm_download(id) {
+    var url = 'http://www.xiami.com/download/pay?id=' + encodeURIComponent(id);
+    window.open(url);
+}
+// 添加到
+
+function collect(id) {
+    var url = '/song/collect/id/' + encodeURIComponent(id);
+    showDialog(url);
+}
+//type_name : collect , album
+
+function play(song_id, type_name, type_id) {
+    if (!type_name) type_name = 'default';
+    if (!type_id) type_id = 0;
+    addSongs(escape("/song/playlist/id/" + song_id + "/object_name/" + type_name + "/object_id/" + type_id));
+}
+
+// 播放专辑
+
+function playalbum(album_id) {
+    addSongs(escape('/song/playlist/id/' + album_id + '/type/1'));
+}
+
+// 播放精选集
+
+function playcollect(list_id) {
+    addSongs(escape("/song/playlist/id/" + list_id + "/type/3"));
+}
+
+// 播放每日歌单
+
+function playdefault() {
+    addSongs(escape('/song/playlist/id/1/type/9'));
+}
+
+
+// 播放未登录用户每日歌单
+
+function playguestdaily() {
+    addSongs(escape('/song/playlist/id/1/type/15'));
+}
+
+// 打开播放器
+var playerDialog;
+
+function openMusicPlayer(str) {
+    //更改播放器高度 站外banner
+    var reg = str.indexOf('out=1');
+    if (reg != -1 && screen.height >= 640) {
+        playerDialog = window.open("http://www.xiami.com/song/play?ids=" + str, "xiamiMusicPlayer", 'width=754,height=637');
+        return;
+    }
+    transclick(str, 'open');
+    var o = getOperaVersion(),
+        i = getInternetExplorerVersion();
+    if ((i == -1 || i > 6) && (o == -1 || o > 15)) {
+        playerDialog = window.open("http://www.xiami.com/play?ids=" + str + "#open", "xiamiMusicPlayer");
+    } else {
+        //其他地方使用
+        playerDialog = window.open("http://www.xiami.com/song/play?ids=" + str + "#open", "xiamiMusicPlayer", 'width=754,height=557');
+    }
+}
+
+function openOldMusicPlayer(str) {
+    transclick(str, 'openold');
+    playerDialog = window.open("http://www.xiami.com/song/play?ids=" + str + "#open", "xiamiMusicPlayer", 'width=754,height=557');
+}
+
+function openPlayer(str) {
+    var o = getOperaVersion(),
+        i = getInternetExplorerVersion();
+    if ((i == -1 || i > 6) && (o == -1 || o > 15)) {
+        if (str.indexOf('uid=') === 0) {
+            // 跟用户听
+            playerDialog = window.open("http://www.xiami.com/play?" + str, "xiamiMusicPlayer");
+        } else {
+            playerDialog = window.open("http://www.xiami.com/play?ids=" + str, "xiamiMusicPlayer");
+        }
+    } else {
+        if (str.indexOf('uid=') === 0) {
+            // 跟用户听
+            window.open("http://www.xiami.com/song/play?" + str, "xiamiMusicPlayer", 'scrollbars,width=720,height=645');
+        } else {
+            window.open("http://www.xiami.com/song/play?ids=" + str, "xiamiMusicPlayer", 'scrollbars,width=720,height=645');
+        }
+    }
+};
+
+// 选择所有
+
+function selectAll(name) {
+    var arr = $('input[name=' + name + ']');
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].disabled == false) {
+            arr[i].checked = true;
+        }
+    }
+}
+
+// 反选
+
+function inverse(name) {
+    var arr = $('input[name=' + name + ']');
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].disabled == false) {
+            arr[i].checked = !arr[i].checked;
+        }
+    }
+}
+
+// 获取选择项
+
+function getSelectValues(name) {
+    var sValue = '';
+    var tmpels = $('input[name=' + name + ']');
+    for (var i = 0, j = 0; i < tmpels.length; i++) {
+        if (j == 100) break;
+        if (tmpels[i].checked || (tmpels[i].type == 'hidden' && tmpels[i].defaultChecked)) {
+            if (sValue == '') {
+                sValue = tmpels[i].value;
+            } else {
+                sValue = sValue + "," + tmpels[i].value;
+            }
+            j++;
+        }
+    }
+    return sValue;
+}
+
+//3rd patry login
+var referer = '';
+
+var openWind = function(url) {
+    var top = (document.body.clientHeight - 420) / 2;
+    var left = (document.body.clientWidth - 520) / 2;
+    window.open(url, 'connect_window', 'height=420, width=560, toolbar =no, menubar=no, scrollbars=yes, resizable=no,top=' + top + ',left=' + left + ', location=no, status=no');
+};
+
+var taoLogin = function() {
+    window.location.href = 'https://login.xiami.com/member/login?taobao=1';
+};
+var sinaLogin = function() {
+    openWind('http://www.xiami.com/sina?referer=' + referer);
+};
+var qqLogin = function() {
+    openWind('http://www.xiami.com/share/connect/type/qzone?referer=' + referer);
+};
+var renLogin = function() {
+    openWind('/renren/goon?referer=' + referer);
+};
+var msnLogin = function() {
+    openWind('/msnconnect');
+};
+var alipayLogin = function() {
+    window.location.href = '/alipay';
+};
+/**/
+
+//3rd patry reg
+var taoReg = function() {
+    location.href = '/member/login?taobao=1';
+};
+var sinaReg = function() {
+    location.href = '/sina?xiamicallback=/member/weibologin/join/sina';
+};
+var qqReg = function() {
+    location.href = '/share/connect/type/qzone?done=/member/weibologin/join/qzone';
+};
+
+function recommendLog(note, op, terminal, len, name, objectid, id, uid) {
+    if (note) {
+        uid = uid ? uid : 0;
+        var url = 'http://www.xiami.com/recommend/log?';
+        url = url + 'rec_note=' + encodeURIComponent(note) + '&op=' + op + '&terminal=' + encodeURIComponent(terminal) + '&playlen=' + encodeURIComponent(len) + '&object_name=' + encodeURIComponent(name) + '&' + objectid + '=' + id + '&userid=' + uid;
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "jsonp"
+        });
+    }
+}
+
+// 统计
+
+function stat(query) {
+    (new Image()).src = 'http://www.xiami.com/statclick/?query=' + query;
+}
+/*
+ * embed athena
+ * default: false
+ */
+var athenaConnetOnly = true;
+var athenaPageName = '';
+/**/
+
+$(function() {
+
+	/* search form */
+	$('#search').submit(function() {
+		if ($('#search .keyword').val() == '音乐搜索，找人...' || $('#search_query').val() == '') return false;
+	});
+	/**/
+
+	/* search auto complete */
+	//var type_delay;
+	var result_count = 0;
+	var current_index = -1;
+	$('#search .keyword').on('input propertychange', function() {
+		var self = $(this);
+			//clearTimeout(type_delay);
+			//type_delay = setTimeout(function() {
+				if (self.val()) {
+					//$('#search .submit').addClass('loading');
+					$.ajax({
+						url: '/ajax/search-index',
+						data: {'key':self.val()},
+						cache: false,
+						success: function(data) {
+							result_count = 0;
+							current_index = -1;
+							$('.auto_complete').html(data).show();
+							//$('#search .submit').removeClass('loading');
+						}
+					});
+				}
+				else {
+					$('.auto_complete').hide();
+				}
+			//}, 300);
+	});
+
+	$('#search .keyword').keydown(function(e) {
+		// esc
+		if (e.keyCode==27) {
+			$('.auto_complete').hide();
+		}
+
+		// enter
+		if (e.keyCode==13) {
+			if (current_index>=0) {
+				var li = $('.auto_complete li.result').get(current_index);
+				var href = $(li).find('a').attr('href');
+				window.location = href;
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
+		// down arrow
+		if (e.keyCode==40) {
+			if ($('.auto_complete').html().length<1) {
+				return false;
+			}
+			result_count = $('.auto_complete li.result').size();
+			if (current_index>=result_count-1) {
+				current_index = -1;
+			}
+			$('.auto_complete li.result').removeClass('selected');
+			$($('.auto_complete li.result')[++current_index]).addClass('selected');
+		}
+
+		// up arrow
+		if (e.keyCode==38) {
+			if ($('.auto_complete').html().length<1) {
+				return false;
+			}
+			result_count = $('.auto_complete li.result').size();
+			if (current_index<=0) {
+				current_index = result_count;
+			}
+			$('.auto_complete li.result').removeClass('selected');
+			$($('.auto_complete li.result')[--current_index]).addClass('selected');
+		}
+	});
+	/**/
+
+	/* notify popup */
+	var notifyOnce = calcOnce = true;
+	$('#header').on('click', '.account .first', function(e) {
+
+		e.stopPropagation();
+
+		$('.user_popup').hide();
+		$('.software_popup').hide();
+		$('.history_popup').hide();
+
+		if ($('.notify_popup:hidden').length) {
+
+			if (notifyOnce) {
+				$.ajax({
+					url: '/notice/head',
+					cache: false,
+					success: function(data) {
+						$('.notify_popup .container').html(data);
+						notifyOnce = false;
+
+						var scrollBarHideDelay;
+						$('.notify_popup .scroll-pane').jScrollPane({
+							mouseWheelSpeed: 20,
+							showArrows: true,
+							hideFocus: true
+						}).bind('jsp-scroll-y', function() {
+							clearTimeout(scrollBarHideDelay);
+							$('.jspDrag').show();
+							if ($('.jspTrack').css('background-color')=='transparent') {
+								scrollBarHideDelay = setTimeout(function() {
+									$('.jspDrag').fadeOut();
+								}, 1000);
+							}
+						}).mousewheel(function(e) {
+							e.preventDefault();
+						});
+
+						$('.jspTrack').mouseenter(function() {
+							clearTimeout(scrollBarHideDelay);
+							$('.jspDrag').show();
+						}).mouseleave(function() {
+							scrollBarHideDelay = setTimeout(function() {
+								$('.jspDrag').fadeOut();
+							}, 1000);
+						}).click(function(e) {
+							e.stopPropagation();
+						});
+					}
+				});
+			}
+
+			$('.notify_popup').show();
+		}
+		else {
+			$('.notify_popup').hide();
+			if (calcOnce) {
+				if (parseInt($('#header .account sup').text())>parseInt($('#header .account .notify').text())) {
+					$('#header .account sup').text(parseInt($('#header .account sup').text())-parseInt($('#header .account .notify').text()));
+				}
+				else if ($('#header .account sup').text()===$('#header .account .notify').text()) {
+					$('#header .account sup').remove();
+				}
+
+				$('.notify_popup .first b').remove();
+				$('.notify_popup .content_block li').addClass('read');
+
+				calcOnce = false;
+			}
+		}
+
+	});
+
+	$('.notify_popup').click(function(e) {
+		e.stopPropagation();
+		//console.log(e.target);
+		if (e.target.tagName=='P' || e.target.tagName=='A') {
+			$(e.target).parentsUntil('ul', 'li').addClass('read');
+		}
+	});
+	/**/
+
+	/* user popup */
+	var userHideDelay;
+	$('#header').on('mouseenter', '.account .last', function(e) {
+
+		$('.notify_popup').hide();
+		if (!notifyOnce && calcOnce) {
+			if (parseInt($('#header .account sup').text())>parseInt($('#header .account .notify').text())) {
+				$('#header .account sup').text(parseInt($('#header .account sup').text())-parseInt($('#header .account .notify').text()));
+			}
+			else if ($('#header .account sup').text()===$('#header .account .notify').text()) {
+				$('#header .account sup').remove();
+			}
+
+			$('.notify_popup .first b').remove();
+			$('.notify_popup .content_block li').addClass('read');
+
+			calcOnce = false;
+		}
+
+		$('.software_popup').hide();
+		$('.history_popup').hide();
+
+		clearTimeout(userHideDelay);
+		$('.user_popup').show();
+
+	}).on('mouseleave', '.account .first', function() {
+		userHideDelay = setTimeout(function() {
+			$('.user_popup').hide();
+		}, 200);
+	});
+
+	$('.user_popup').mouseenter(function() {
+		clearTimeout(userHideDelay);
+	}).mouseleave(function() {
+		var self = this;
+		userHideDelay = setTimeout(function() {
+			$(self).hide();
+		}, 200);
+	});
+	/**/
+
+	/* software popup */
+	$('#secondary .software').click(function(e) {
+
+		e.stopPropagation();
+
+		$('.user_popup').hide();
+
+		$('.notify_popup').hide();
+		if (!notifyOnce && calcOnce) {
+			if (parseInt($('#header .account sup').text())>parseInt($('#header .account .notify').text())) {
+				$('#header .account sup').text(parseInt($('#header .account sup').text())-parseInt($('#header .account .notify').text()));
+			}
+			else if ($('#header .account sup').text()===$('#header .account .notify').text()) {
+				$('#header .account sup').remove();
+			}
+
+			$('.notify_popup .first b').remove();
+			$('.notify_popup .content_block li').addClass('read');
+
+			calcOnce = false;
+		}
+
+		$('.history_popup').hide();
+
+		$('.software_popup').toggle();
+
+	});
+	/**/
+
+	/* history popup */
+
+	//var historyOnce = true;
+	$('#secondary .history').click(function(e) {
+
+		e.stopPropagation();
+
+		$('.user_popup').hide();
+
+		$('.notify_popup').hide();
+		if (!notifyOnce && calcOnce) {
+			if (parseInt($('#header .account sup').text())>parseInt($('#header .account .notify').text())) {
+				$('#header .account sup').text(parseInt($('#header .account sup').text())-parseInt($('#header .account .notify').text()));
+			}
+			else if ($('#header .account sup').text()===$('#header .account .notify').text()) {
+				$('#header .account sup').remove();
+			}
+
+			$('.notify_popup .first b').remove();
+			$('.notify_popup .content_block li').addClass('read');
+
+			calcOnce = false;
+		}
+
+		$('.software_popup').hide();
+
+		//if (historyOnce) {
+
+			//historyOnce = false;
+
+			$.ajax({
+				url: '/listen/recent',
+				cache: false,
+				dataType: 'json',
+				success: function(data) {
+					if (data.data) {
+
+						var playSong;
+						if (_xiamiuser) {
+							playSong = '/song/playlist-default';
+						}
+						else {
+							var temp = $.tmpl('${song_id},', data.data).text();
+							playSong = '/song/playlist/id/'+temp.substring(0, temp.length-1);
+						}
+
+						var historyTmpl = '<li><p><a href="/song/${song_id}" title="${name}" target="_blank">${name}</a> - <a href="/artist/${artist_id}" title="${artist_name}" target="_blank">${artist_name}</a></p><b class="icon toplay" onclick="addSongs(\''+playSong+'/id/${song_id}\');"></b></li>';
+
+						$('.history_popup .container').html('<div class="scroll-pane"><ul></ul></div><a class="button play" href="" onclick="addSongs(\''+playSong+'\');return false;"><span>继续播放</span></a>');
+						$.tmpl(historyTmpl, data.data).appendTo('.history_popup .scroll-pane ul');
+
+						var scrollBarHideDelay;
+						$('.history_popup .scroll-pane').jScrollPane({
+							mouseWheelSpeed: 20,
+							showArrows: true,
+							hideFocus: true
+						}).bind('jsp-scroll-y', function() {
+							clearTimeout(scrollBarHideDelay);
+							$('.jspDrag').show();
+							if ($('.jspTrack').css('background-color')=='transparent') {
+								scrollBarHideDelay = setTimeout(function() {
+									$('.jspDrag').fadeOut();
+								}, 1000);
+							}
+						}).mousewheel(function(e) {
+							e.preventDefault();
+						});
+
+						$('.jspTrack').mouseenter(function() {
+							clearTimeout(scrollBarHideDelay);
+							$('.jspDrag').show();
+						}).mouseleave(function() {
+							scrollBarHideDelay = setTimeout(function() {
+								$('.jspDrag').fadeOut();
+							}, 1000);
+						}).click(function(e) {
+							e.stopPropagation();
+						});
+
+						$('.history_popup .container').on('mouseenter', 'li', function() {
+							$(this).find('.toplay').show();
+						}).on('mouseleave', 'li', function() {
+							$(this).find('.toplay').hide();
+						});
+
+					}
+					else {
+
+						var playDaily;
+						if (_xiamiuser) {
+							playDaily = 'playdefault()';
+						}
+						else {
+							playDaily = 'playguestdaily()';
+						}
+
+						$('.history_popup .container').html('<p class="none">无最近播放列表</p><a class="button more" href="" onclick="'+playDaily+';return false;"><span>试试每日歌单</span></a>');
+					}
+				}
+			});
+		//}
+
+		$('.history_popup').toggle();
+
+	});
+
+	$('.history_popup').click(function(e) {
+		e.stopPropagation();
+	});
+	/**/
+
+	/* body click */
+	$('body').click(function() {
+		$('.auto_complete').hide();
+
+		$('.notify_popup').hide();
+		if (!notifyOnce && calcOnce) {
+			if (parseInt($('#header .account sup').text())>parseInt($('#header .account .notify').text())) {
+				$('#header .account sup').text(parseInt($('#header .account sup').text())-parseInt($('#header .account .notify').text()));
+			}
+			else if ($('#header .account sup').text()===$('#header .account .notify').text()) {
+				$('#header .account sup').remove();
+			}
+
+			$('.notify_popup .first b').remove();
+			$('.notify_popup .content_block li').addClass('read');
+
+			calcOnce = false;
+		}
+
+		$('.user_popup').hide();
+
+		$('.software_popup').hide();
+
+		$('.history_popup').hide();
+	});
+	/**/
+
+	$('#header .user_popup .logout').click(function(e) {
+		$.ajax({
+			url: 'https://passport.alipay.com/mini_logout.js?site=12&callback=logout',
+			type: 'GET',
+			dataType: 'jsonp',
+			cache: false,
+			success: function() {
+				setTimeout(function() {
+					logout();
+				}, 1500);
+			},
+			error: function() {
+				logout();
+			}
+		});
+	});
+
+});
+
+function logout() {
+	window.location.href = '/member/logout';
+}$(function() {
+	// back to top
+	$('<div id="sidebutton" class="t_show" data-spm="226669518"><a class="qrcode" href="http://www.xiami.com/apps/android" target="_blank"><b class="icon"></b><span>扫二<br />维码</span><div class="code"><strong>虾米音乐APP</strong><img src="http://img.xiami.net/static/img/common/qrcode/qrcode_footer.png?v=20140715133653" /><b class="triangle"><i>◆</i>◆</b></div></a><a class="feedback" href="http://www.xiami.com/feedback?type=22" target="_blank"><b class="icon"></b><span>意见<br />反馈</span></a><a class="gotop" href=""><b class="icon"></b><span>返回<br />顶部</span></a></div>').appendTo($('body'));
+
+	//var set = function() {
+		//$('#sidebutton').attr('class', $(window).scrollTop() >= 1200 ? 't_show' : 't_hide');
+	//};
+
+	//$(window).on('scroll', set);
+
+	$('#sidebutton .gotop').click(function(e) {
+		e.preventDefault();
+		//$(this).className = 't_hide';
+		//$(window).off('scroll', set);
+		var temp = setInterval(function() {
+			$(window).scrollTop(Math.floor($(window).scrollTop()*0.2));
+			if ($(window).scrollTop()==0) {
+				clearInterval(temp);
+			}
+		}, 10);
+	});
+
+
+	// init Athena
+	if (_xiamiuser) {
+		setTimeout(function() {
+				$.ajax({
+					url : '/index/athena',
+					dataType : 'html',
+					success : function(rep) {
+						$('body').append(rep);
+					}
+				});
+		}, 2000);
+	}
+});

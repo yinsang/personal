@@ -1,0 +1,274 @@
+#pr_ad {
+  padding: 0 15px;
+  min-height: 60px; }
+  #pr_ad .content {
+    margin: 30px 0 10px 0;
+    position: relative;
+    overflow: hidden; }
+  #pr_ad .loading {
+    height: 60px;
+    background: url("http://img.xiami.net/static/img/common/loading/loading_cd.gif") no-repeat center center; }
+  #pr_ad .pr_ad_four {
+    position: relative;
+    margin-left: -13px;
+    width: 800px;
+    height: 60px;
+    overflow: hidden;
+    _zoom: 1; }
+    #pr_ad .pr_ad_four a {
+      float: left;
+      width: 175px;
+      height: 60px;
+      overflow: hidden;
+      margin-left: 13px; }
+    #pr_ad .pr_ad_four img {
+      width: 100%;
+      height: 100%; }
+
+.listen-mod {
+  border: 1px solid #EBEBEB;
+  border-radius: 4px;
+  background-color: #FFF;
+  margin-top: 20px; }
+  .listen-mod .loading {
+    height: 487px;
+    background: url("http://img.xiami.net/static/img/common/loading/loading_cd.gif") no-repeat center center; }
+  .listen-mod img {
+    height: 100%;
+    vertical-align: middle; }
+  .listen-mod h2 {
+    height: 40px;
+    margin: 0 15px;
+    border-bottom: 1px solid #EBEBEB;
+    line-height: 40px;
+    text-align: left;
+    overflow: hidden; }
+    .listen-mod h2 strong {
+      font-size: 14px; }
+  .listen-mod a:link {
+    text-decoration: none; }
+  .listen-mod a:visited {
+    text-decoration: none; }
+  .listen-mod a:hover {
+    text-decoration: underline; }
+  .listen-mod a:active {
+    text-decoration: none; }
+  .listen-mod .content {
+    margin: 20px 15px 0;
+    padding-bottom: 10px; }
+    .listen-mod .content .loading {
+      height: 416px; }
+  .listen-mod .chuanyue {
+    float: right; }
+    .listen-mod .chuanyue .btn {
+      display: block;
+      margin: 14px 0 0 0;
+      width: 19px;
+      height: 11px;
+      background: url(./images/icon.png) no-repeat 1px 0;
+      text-indent: -999em;
+      overflow: hidden; }
+      .listen-mod .chuanyue .btn:hover {
+        display: block;
+        width: 19px;
+        height: 11px;
+        background: url(./images/icon.png) no-repeat 1px -22px; }
+  .listen-mod .item-cover {
+    position: relative;
+    text-align: center; }
+    .listen-mod .item-cover .img {
+      width: 270px;
+      height: 270px;
+      overflow: hidden; }
+  .listen-mod .item-cover.hover .toplay {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    margin-top: -24px;
+    margin-left: -24px;
+    width: 48px;
+    height: 48px;
+    background: url("http://img.xiami.net/static/img/common/play_icon.png") no-repeat 0 0;
+    _background-image: url("http://img.xiami.net/static/img/common/play_icon.gif");
+    cursor: pointer; }
+    .listen-mod .item-cover.hover .toplay:hover {
+      background-position: -48px 0; }
+  .listen-mod .item-date {
+    top: -7px;
+    left: 7px;
+    position: absolute;
+    width: 68px;
+    height: 75px;
+    background: url(./images/icon.png) no-repeat -41px 0; }
+    .listen-mod .item-date ul {
+      padding: 5px 0 0 7px; }
+    .listen-mod .item-date li {
+      display: block;
+      color: #FFF;
+      font-size: 12px;
+      text-align: center;
+      font-weight: 700; }
+    .listen-mod .item-date .day {
+      font-size: 18px; }
+  .listen-mod .item-date.past {
+    background: url(./images/icon.png) no-repeat -41px -89px; }
+  .listen-mod .item-song {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EBEBEB; }
+    .listen-mod .item-song h2 {
+      margin: 0 0 0 2px;
+      border: 0; }
+      .listen-mod .item-song h2 a {
+        float: left;
+        max-width: 50%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden; }
+    .listen-mod .item-song .name {
+      margin-left: 5px; }
+    .listen-mod .item-song .desc {
+      margin-left: 2px; }
+  .listen-mod .item-song .name,
+  .listen-mod .item-song .desc {
+    color: #999; }
+  .listen-mod .item-util {
+    overflow: hidden;
+    _zoom: 1;
+    background-color: #F5F5F5; }
+    .listen-mod .item-util .collect, .listen-mod .item-util .share, .listen-mod .item-util .collected {
+      width: 134px;
+      height: 40px;
+      float: left;
+      position: relative;
+      text-indent: -999em;
+      overflow: hidden; }
+      .listen-mod .item-util .collect .btn, .listen-mod .item-util .share .btn, .listen-mod .item-util .collected .btn {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -13px;
+        margin-top: -11px;
+        width: 25px;
+        height: 21px;
+        display: block;
+        background: url(./images/icon.png) no-repeat; }
+    .listen-mod .item-util .collect .btn {
+      background-position: 1px -170px; }
+      .listen-mod .item-util .collect .btn:hover {
+        background-position: 1px -201px; }
+    .listen-mod .item-util .collected .btn {
+      background-position: 1px -101px; }
+      .listen-mod .item-util .collected .btn:hover {
+        background-position: 1px -139px; }
+    .listen-mod .item-util .share {
+      border-left: 1px solid #EBEBEB; }
+      .listen-mod .item-util .share .btn {
+        background-position: 1px -44px; }
+        .listen-mod .item-util .share .btn:hover {
+          background-position: 1px -70px; }
+  .listen-mod .item-comment {
+    display: block;
+    margin-top: 11px;
+    height: 30px;
+    line-height: 30px;
+    color: #FFF;
+    background-color: #FF6600;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden; }
+    .listen-mod .item-comment:hover {
+      color: #FFF;
+      background-color: #E55C00;
+      text-decoration: none; }
+
+.notes_wrapper {
+  clear: both;
+  position: relative;
+  margin-top: 20px;
+  padding: 0 15px; }
+  .notes_wrapper .loading {
+    height: 265px;
+    background: url("http://img.xiami.net/static/img/common/loading/loading_cd.gif") no-repeat center center; }
+  .notes_wrapper .title {
+    height: 54px; }
+  .notes_wrapper .application-artist {
+    float: right;
+    font-size: 12px;
+    color: #F60;
+    height: 54px;
+    line-height: 54px; }
+  .notes_wrapper h2 {
+    height: 54px;
+    line-height: 54px; }
+    .notes_wrapper h2 strong {
+      float: left;
+      font-size: 18px; }
+    .notes_wrapper h2 span,
+    .notes_wrapper h2 .more {
+      color: #f60; }
+  .notes_wrapper .note_list {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 265px; }
+  .notes_wrapper .note {
+    position: absolute;
+    width: 175px;
+    height: 100%;
+    top: 0; }
+    .notes_wrapper .note .image {
+      font-size: 0;
+      height: 175px; }
+    .notes_wrapper .note sup {
+      background-image: url("http://img.xiami.net/static/musician/build/images/i-se9131a85db.png");
+      background-repeat: no-repeat;
+      background-position: 0 -464px;
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block; }
+    .notes_wrapper .note img {
+      max-width: 100%; }
+    .notes_wrapper .note a {
+      color: #FFF;
+      text-decoration: none; }
+      .notes_wrapper .note a:hover {
+        text-decoration: none; }
+    .notes_wrapper .note .info_wrapper {
+      position: relative;
+      padding: 0 10px;
+      background: #262626; }
+    .notes_wrapper .note .info {
+      display: table-cell;
+      vertical-align: middle;
+      max-width: 150px; }
+    .notes_wrapper .note p {
+      overflow: hidden;
+      word-break: break-all;
+      text-overflow: ellipsis;
+      line-height: 18px; }
+    .notes_wrapper .note strong {
+      white-space: nowrap;
+      color: #FFFBE5; }
+    .notes_wrapper .note .multiple {
+      max-height: 36px;
+      text-indent: 24px; }
+    .notes_wrapper .note em {
+      position: absolute;
+      right: 10px;
+      bottom: 10px; }
+  .notes_wrapper .note.img .info {
+    height: 90px; }
+  .notes_wrapper .note.small {
+    left: 188px; }
+  .notes_wrapper .note.small .info {
+    height: 129px; }
+  .notes_wrapper .note.text .info {
+    max-width: 150px;
+    height: 265px; }
+  .notes_wrapper .note.text .info .multiple {
+    max-height: 72px; }

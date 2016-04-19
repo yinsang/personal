@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Declaration Example</title>
+    <meta charset="UTF-8" />
+    <style>
+		.letsGo{width:600px;height:300px;}
+        .PK{width:500px;height:250px;border:1px solid black;}
+        .input{width:100px;height:50px;float:left;background:pink;text-align: center;line-height:50px;cursor:pointer;}
+        .blackboard span{color:red;}
+    </style>
+    <script class="jquery library" src="../js/jquery-1.8.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="letsGo">
+	<div class="blackboard">
+		<div class="show">共比赛了<span class="pkAll">0</span>次，您一共赢了<span class="winNum">0</span>次，胜率<span class="winRate">0</span>%</div>
+	</div>
+    <div class="PK">
+        <h3>出手吧骚年</h3>
+        <h4></h4>
+        <div id="knief" class=" input" >剪刀</div>
+        <div id="stone" class=" input" >石头</div>
+        <div id="bag" class=" input" >布</div>
+    </div>
+</div>
+<script>
+    $(function(){
+        var Width=($('.PK').css('width').substr(0,$('.PK').css('width').length-2)-3*$('.input').css('width').substr(0,$('.input').css('width').length-2))/4
+        $('.input').css('margin-left',Width)
+        $('.input:last-child').css('margin-right',Width)
+    })
+</script>
+<script>
+    $(function(){
+        var allPKNum = 0;
+        var winNum = 0;
+        var knief = "knief"
+        var stone = "stone"
+        var bag = "bag"
+        var randomArr = [0,1,2]
+
+        $("body").on("click",'.input',function(){
+            var randomNum = Math.floor(Math.random()*randomArr.length)
+            var personNum
+            allPKNum++
+            $(".pkAll").html(allPKNum)
+            var thisId=$(this).attr("id")
+            var winOrFalse
+            //0为输，1为赢，-1为平
+            switch(thisId){
+                case "knief":
+                   switch(randomNum){
+                        case 0:
+                        winOrFalse=-1
+                        break;
+                        case 1:
+                        winOrFalse=0
+                        break;
+                        case 2:
+                        winOrFalse=1
+                        break;
+                   }
+                   break;
+                case "stone":
+                    personNum = 1
+                    switch(randomNum){
+                        case 0:
+                        winOrFalse=1
+                        break;
+                        case 1:
+                        winOrFalse=-1
+                        break;
+                        case 2:
+                        winOrFalse=0
+                        break;
+                   }
+                   break;
+                
+                case "bag":
+                    personNum = 2
+                    switch(randomNum){
+                        case 0:
+                        winOrFalse=0
+                        break;
+                        case 1:
+                        winOrFalse=1
+                        break;
+                        case 2:
+                        winOrFalse=-1
+                        break;
+                   }
+                   break;
+            }
+            if(winOrFalse==1){
+                winNum++
+                $('.PK h4').html("你赢了")
+            }else{
+                $('.PK h4').html("你输了")
+
+            }
+            $(".winNum").html(winNum)
+            var winRate=$(".winNum").html()/$(".pkAll").html()
+            $(".winRate").html(String(winRate).substring(0,4))
+            var winRateNum=Number(winRate)
+        })
+    })
+</script>
+</body>
+</html>

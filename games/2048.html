@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Function Declaration Example</title>
+    <meta charset="UTF-8" />
+
+    <style type="text/css">
+        body{background:#eee;}
+        table{width:100%;}
+        tr{width:100%;}
+        /*td{width:20%;height:50px;line-height: 50px;text-align: center;font-size:20px;background: #fff;}*/
+        td{width:20%;text-align: center;font-size:5em;background: #fff;}
+        td{border-radius: 0.5em;}
+        .activeTd{background:#fa8723;}
+        .spaceTd{background: pink}
+        .clearfix:before, .clearfix:after { content: ''; display: table; } .clearfix:after { clear: both; }
+        /*.letsGo{height:70%;}*/
+    </style>
+    <script class="jquery library" src="../js/jquery-2.1.4.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="letsGo">
+    <table class="bigBox">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<script>
+    $(function(){
+        // $('tr').addClass("clearfix")
+        //给25个td赋予class和id
+        
+        //25个格子随机抽两个为初始位置
+        var AllArr = new Array(25)
+        var startPositionNum1 = Math.floor(Math.random()*AllArr.length)
+        var startPositionNum2 
+        var secondF=function(){
+            startPositionNum2 =  Math.floor(Math.random()*AllArr.length)
+        }
+        
+        secondF();
+        while(startPositionNum1==startPositionNum2){
+            secondF()
+        }
+        $('.bigBox tr td').html("&nbsp;")
+        $('.bigBox tr td').attr("class","usualTd")
+
+        $('.bigBox tr td').eq(startPositionNum1).html(2)
+        $('.bigBox tr td').eq(startPositionNum1).attr("class","activeTd")
+        $('.bigBox tr td').eq(startPositionNum2).html(2)
+        $('.bigBox tr td').eq(startPositionNum2).attr("class","activeTd")
+        //test
+        // $('.bigBox tr td').attr("class","usualTd")
+        
+        // $('.bigBox tr td').eq(5).html(2)
+        // $('.bigBox tr td').eq(5).attr("class","activeTd")
+        // // $('.bigBox tr td').eq(10).html(2)
+        // // $('.bigBox tr td').eq(10).attr("class","activeTd")
+        // $('.bigBox tr td').eq(15).html(2)
+        // $('.bigBox tr td').eq(15).attr("class","activeTd")
+        // $('.bigBox tr td').eq(20).html(8)
+        // $('.bigBox tr td').eq(20).attr("class","activeTd")
+        //样式设置
+        var tdWidth = $(".letsGo td").css("width");
+        $(".letsGo td").css("height",tdWidth)
+        //按键上下左右，触发画面
+        document.onkeydown=function(event){
+            $(".letsGo td").css("height",tdWidth)
+            var showingPostion = Math.floor(Math.random()*AllArr.length)
+            var e=event || window.event||arguments.callee.caller.arguments[0]
+            var compainPostion = undefined;
+            var usualTdArr = new Array($(".usualTd").length)
+            var usualTdArrNum = Math.floor(Math.random()*usualTdArr.length)
+            if(e&&e.keyCode ==37){
+                console.log("left")
+                compainPostion=0
+                //左右
+
+            }else if(e&&e.keyCode ==38){
+                console.log("up")
+                compainPostion=1
+
+            }else if(e&&e.keyCode ==39){
+                console.log("right")
+                compainPostion=2
+
+            }else if(e&&e.keyCode ==40){
+                console.log("down")
+                compainPostion=3
+
+            }
+            if(compainPostion!=undefined){
+
+                //left
+                if(compainPostion==0){
+                    for(var i=0;i < 5;i++){
+                        for(j=0;j < 5;){
+                            if(($(".bigBox").find("tr").eq(i).find("td").eq(j).html()!="&nbsp;")&&(j > 0)&&($(".bigBox").find("tr").eq(i).find("td").eq(j-1).html()=="&nbsp;")){
+                                var spaceTd = $(".bigBox").find("tr").eq(i).find("td").eq(j-1)
+                                spaceTd.remove()
+                                $(".bigBox").find("tr").eq(i).append("<td class='usualTd'>&nbsp;</td>")
+                                j=j-1
+                            }else{
+                                j++
+                            }
+                        }
+                    }
+                    for(var i=0;i < 5;i++){
+                        if($(".bigBox").find("tr").eq(i).find("td").eq(1).html()!="&nbsp;"){
+                            // console.log(i)
+                            for(var j=0;j < 5;j++){
+                                if($(".bigBox").find("tr").eq(i).find("td").eq(j).html()==$(".bigBox").find("tr").eq(i).find("td").eq(j+1).html()&&$(".bigBox").find("tr").eq(i).find("td").eq(j).html()!="&nbsp;"){
+                                    $(".bigBox").find("tr").eq(i).find("td").eq(j).html(2*$(".bigBox").find("tr").eq(i).find("td").eq(j).html())
+                                    $(".bigBox").find("tr").eq(i).find("td").eq(j+1).remove();
+                                    $(".bigBox").find("tr").eq(i).append("<td class='usualTd'>&nbsp;</td>")
+                                }
+                            }
+
+                        }
+                    }
+                }
+                //up
+                if(compainPostion==1){
+                    for(var i=0;i < 5;i++){//列
+                        for(j=0;j < 5;){//行
+                            if(($(".bigBox").find("tr").eq(j).find("td").eq(i).html()!="&nbsp;")&&(j > 0)&&($(".bigBox").find("tr").eq(j-1).find("td").eq(i).html()=="&nbsp;")){
+                                var changeTd = $(".bigBox").find("tr").eq(j).find("td").eq(i).html()
+                                $(".bigBox").find("tr").eq(j).find("td").eq(i).attr("class","usualTd")
+                                $(".bigBox").find("tr").eq(j).find("td").eq(i).html("&nbsp;");
+                                $(".bigBox").find("tr").eq(j-1).find("td").eq(i).html(changeTd).attr("class","activeTd")
+                                j=j-1
+                            }else{
+                                j++
+                            }
+                        }
+                    }
+                    for(var i=0;i < 5;i++){//列
+                        if($(".bigBox").find("tr").eq(1).find("td").eq(i).html()!="&nbsp;"){
+                            for(var j=0;j < 5;j++){//行
+                                if($(".bigBox").find("tr").eq(j).find("td").eq(i).html()==$(".bigBox").find("tr").eq(j+1).find("td").eq(i).html()&&$(".bigBox").find("tr").eq(j).find("td").eq(i).html()!="&nbsp;"){
+                                    $(".bigBox").find("tr").eq(j).find("td").eq(i).html(2*$(".bigBox").find("tr").eq(j).find("td").eq(i).html())
+                                    $(".bigBox").find("tr").eq(j+1).find("td").eq(i).attr("class","usualTd").html("&nbsp;");
+                                    for(var k = 0;k < 5-j;k++){
+                                        var tdClass = $(".bigBox").find("tr").eq(j-k).find("td").eq(i).attr("class");
+                                        var td = $(".bigBox").find("tr").eq(j-k).find("td").eq(i).html();
+                                        $(".bigBox").find("tr").eq(j-k).find("td").eq(i).attr("class",$(".bigBox").find("tr").eq(j-k-1).find("td").eq(i).attr("class")).html($(".bigBox").find("tr").eq(j-k-1).find("td").eq(i).html());
+                                        $(".bigBox").find("tr").eq(j-k-1).find("td").eq(i).attr("class",tdClass).html(td);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //right
+                if(compainPostion==2){
+                    for(var i=0;i < 5;i++){
+                        for(j=0;j < 5;){
+                            if(($(".bigBox").find("tr").eq(i).find("td").eq(j).html()!="&nbsp;")&&(j < 5)&&($(".bigBox").find("tr").eq(i).find("td").eq(j+1).html()=="&nbsp;")){
+                                var spaceTd = $(".bigBox").find("tr").eq(i).find("td").eq(j+1)
+                                spaceTd.remove()
+                                $(".bigBox").find("tr").eq(i).prepend("<td class='usualTd'>&nbsp;</td>")
+                                j++
+                            }else{
+                                j++
+                            }
+                        }
+                    }
+                    for(var i=0;i < 5;i++){
+                        if($(".bigBox").find("tr").eq(i).find("td").eq(3).html()!="&nbsp;"){
+                            for(var j=0;j < 5;j++){
+                                if($(".bigBox").find("tr").eq(i).find("td").eq(4-j).html()==$(".bigBox").find("tr").eq(i).find("td").eq(3-j).html()&&$(".bigBox").find("tr").eq(i).find("td").eq(4-j).html()!="&nbsp;"){
+                                    $(".bigBox").find("tr").eq(i).find("td").eq(4-j).html(2*$(".bigBox").find("tr").eq(i).find("td").eq(4-j).html())
+                                    $(".bigBox").find("tr").eq(i).find("td").eq(3-j).remove();
+                                    $(".bigBox").find("tr").eq(i).prepend("<td class='usualTd'>&nbsp;</td>")
+                                    // j+=2;
+                                }
+                            }
+                        }
+                    }
+                }
+                //down
+                if(compainPostion==3){
+                    for(var i=0;i < 5;i++){//列
+                        for(j=0;j < 5;){//行
+                            if(($(".bigBox").find("tr").eq(j).find("td").eq(i).html()!="&nbsp;")&&(j < 5)&&($(".bigBox").find("tr").eq(j+1).find("td").eq(i).html()=="&nbsp;")){
+                                var changeTd = $(".bigBox").find("tr").eq(j).find("td").eq(i).html()
+                                $(".bigBox").find("tr").eq(j).find("td").eq(i).attr("class","usualTd")
+                                $(".bigBox").find("tr").eq(j).find("td").eq(i).html("&nbsp;");
+                                $(".bigBox").find("tr").eq(j+1).find("td").eq(i).html(changeTd).attr("class","activeTd")
+                            }else{
+                                j++
+                            }
+                        }
+                    }
+                    for(var i=0;i < 5;i++){//列
+                        if($(".bigBox").find("tr").eq(3).find("td").eq(i).html()!="&nbsp;"){
+                            for(var j=0;j < 5;j++){//行
+                                if($(".bigBox").find("tr").eq(4-j).find("td").eq(i).html()==$(".bigBox").find("tr").eq(4-j-1).find("td").eq(i).html()){
+                                    $(".bigBox").find("tr").eq(4-j).find("td").eq(i).html(2*$(".bigBox").find("tr").eq(4-j).find("td").eq(i).html())
+                                    $(".bigBox").find("tr").eq(4-j-1).find("td").eq(i).attr("class","usualTd").html("&nbsp;");
+                                    for(var k = 0;k < 4-j;k++){
+                                        if(2-j-k > -1){
+                                            var tdClass = $(".bigBox").find("tr").eq(3-j-k).find("td").eq(i).attr("class");
+                                            var td = $(".bigBox").find("tr").eq(3-j-k).find("td").eq(i).html();
+                                            $(".bigBox").find("tr").eq(3-j-k).find("td").eq(i).attr("class",$(".bigBox").find("tr").eq(2-j-k).find("td").eq(i).attr("class")).html($(".bigBox").find("tr").eq(2-j-k).find("td").eq(i).html());
+                                            $(".bigBox").find("tr").eq(2-j-k).find("td").eq(i).attr("class",tdClass).html(td);
+
+                                        }
+                                        
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+                // for(var i=0;i < $('.bigBox tr .usualTd').length;i++){
+                //     var TD=$('.bigBox tr .usualTd').eq(i)
+                //     TD.attr("id",i)
+                // }
+                // console.log(usualTdArrNum)
+                setTimeout(function(){
+                    $('.bigBox .usualTd').eq(usualTdArrNum).html(2)
+                    $('.bigBox .usualTd').eq(usualTdArrNum).attr("class","activeTd")
+                    $('.bigBox .usualTd').eq(usualTdArrNum).fadeIn()
+                },300)
+                $(".usualTd").html("&nbsp;")
+            }
+
+        }
+        
+        // $(".letsGo td").css("line-height",tdWidth)
+
+    })
+</script>
+</body>
+</html>

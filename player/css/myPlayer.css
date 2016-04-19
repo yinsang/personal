@@ -1,0 +1,14 @@
+*{margin:0;padding: 0;}
+/*.playerBg{position:absolute;width: 100%;height:100%;z-index:-1;background: no-repeat fixed;background-size: 100% 100%; }*/
+body{width:100%;height:100%;}
+.playerBg{width:100%;height:100%;z-index:-1;position: absolute;}
+.playerBgImg,.playerBgCanvas{width:100%;height:100%;background: no-repeat fixed;background-size: 100% 100%;position: absolute;left:0;top:0;}
+.playerBox{width:100%;height:100%;display:table;}
+html,body{height:100%;width:100%;}
+.playerBox > div{display:table-row;width:100%;}
+.playerControl{bottom: 0;height:100px;width:100%;display:block;}
+/*.playerContain{width:100%;height:100%;}*/
+.playerContain{    background-color: rgba(255,255,255,0.2);}
+.button{height:70px;}
+.playerControl input{width:70px;height:70px;border-radius: 5px;cursor:pointer;background: #fff;display: block;float:left;}
+.playerControl>div{margin-top:15px;}

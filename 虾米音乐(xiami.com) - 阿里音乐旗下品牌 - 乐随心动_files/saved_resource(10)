@@ -1,0 +1,81 @@
+$(function() {
+	$('#charts').on('mouseenter', '.song', function() {
+		if (!$(this).hasClass('play') && !$(this).hasClass('pause')) {
+			//$(this).find('.image .mask').show();
+			$(this).find('.image .icon').show();
+		}
+	}).on('mouseleave', '.song', function() {
+		if (!$(this).hasClass('play') && !$(this).hasClass('pause')) {
+			//$(this).find('.image .mask').hide();
+			$(this).find('.image .icon').hide();
+		}
+	}).on('click', '.song .image .icon', function() {
+		var songWrapper = $(this).closest('.songwrapper');
+		var blockWrapper = $(this).closest('.content_block');
+		//console.log(songWrapper, blockWrapper);
+		if ($(this).hasClass('toplay')) {
+			$(this).removeClass('toplay').addClass('topause');
+			songWrapper.removeClass('pause').addClass('play');
+			MUSICIANPLAY.play.rePlay();
+			document.title = document.title.replace(/\|\| 暂停播放/, '▶ 正在播放');
+		}
+		else {
+			if ($(this).hasClass('topause')) {
+				$(this).removeClass('topause').addClass('toplay');
+				songWrapper.removeClass('play').addClass('pause');
+				MUSICIANPLAY.play.pause();
+				document.title = document.title.replace(/▶ 正在播放/, '|| 暂停播放');
+			}
+			else {
+				$('.songwrapper').removeClass('play pause');
+				$('.song .image .icon').removeClass('toplay topause').hide();
+				//console.log(songWrapper.data('index'), blockWrapper.data('content'));
+				playAtIndex(songWrapper.data('index'));
+			}
+		}
+	});
+});$(function() {
+	$('body').on('mouseenter', '.album .image', function() {
+		$(this).find('.mask').show();
+		$(this).find('.toplay').show();
+		$(this).find('dl').show();
+		$(this).find('.user').addClass('hover');
+	}).on('mouseleave', '.album .image', function() {
+		$(this).find('.mask').hide();
+		$(this).find('.toplay').hide();
+		$(this).find('dl').hide();
+		$(this).find('.user').removeClass('hover');
+	}).on('mouseenter', '.album dl', function() {
+		$(this).find('dd').show();
+	}).on('mouseleave', '.album dl', function() {
+		$(this).find('dd').hide();
+	});
+});$(function() {
+	$('body').on('mouseenter', '.artist .image', function() {
+		$(this).find('.mask').show();
+		$(this).find('dl').show();
+	}).on('mouseleave', '.artist .image', function() {
+		$(this).find('.mask').hide();
+		$(this).find('dl').hide();
+	}).on('mouseenter', '.artist dl', function() {
+		$(this).find('dd').show();
+	}).on('mouseleave', '.artist dl', function() {
+		$(this).find('dd').hide();
+	});
+});$(function() {
+	$('body').on('mouseenter', '.collect .image', function() {
+		$(this).find('.mask').show();
+		$(this).find('.toplay').show();
+		$(this).find('dl').show();
+		$(this).find('.user').addClass('hover');
+	}).on('mouseleave', '.collect .image', function() {
+		$(this).find('.mask').hide();
+		$(this).find('.toplay').hide();
+		$(this).find('dl').hide();
+		$(this).find('.user').removeClass('hover');
+	}).on('mouseenter', '.collect dl', function() {
+		$(this).find('dd').show();
+	}).on('mouseleave', '.collect dl', function() {
+		$(this).find('dd').hide();
+	});
+});
