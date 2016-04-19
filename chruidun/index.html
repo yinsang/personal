@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>长虹公安瑞盾系统</title>
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body class="indexHtml">
+    <div class="wrap">
+        <div class="content">
+            <div class="header">
+                <div class="title">长虹公安瑞盾系统</div>
+                <div class="control">
+                    <div class="buttons clearfix">
+                        <div class="to-close"></div>
+                        <div class="to-small"></div>
+                        <div class="to-big"></div>
+                    </div>
+                    <div class="info">
+                        <data>2104/04/14</data>
+                        <span>admin</span>
+                        <a href="">退出</a>
+                        <a href="">权限</a>
+                    </div>
+                </div>
+            
+            </div>
+            <div class="main">
+                <div id="allmap"></div>
+                <div class="bottom-btn">
+                    <input type="button" class="ralationship-view" value="关系视图">
+                    <input type="button" class="space-view" value="空间视图">
+                </div>
+                <div class="side-bar">
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=skiIa6ePpR2SSLxbFaKztQfFbGrp9ZNL"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
+    <script type="text/javascript">
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point(116.404, 39.915);
+        map.centerAndZoom(point, 10);
+        
+        //centre:椭圆中心点,X:横向经度,Y:纵向纬度
+        function add_oval(centre,x,y)
+        {
+            var assemble=new Array();
+            var angle;
+            var dot;
+            var tangent=x/y;
+            for(i=0;i<36;i++)
+            {
+                angle = (2* Math.PI / 36) * i;
+                dot = new BMap.Point(centre.lng+Math.sin(angle)*y*tangent, centre.lat+Math.cos(angle)*y);
+                assemble.push(dot);
+            }
+            return assemble;
+        }
+        var oval = new BMap.Polygon(add_oval(point,0.1,0.3), {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});
+        map.addOverlay(oval);
+    </script>
+</body>
+</html>
