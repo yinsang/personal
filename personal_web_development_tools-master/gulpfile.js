@@ -115,4 +115,12 @@ gulp.task("m-server",["postcss","es2015"], ()=>{
     gulp.watch("./today-m/**/private.js", ["es2015"]);
     gulp.watch(["./today-m/**/today-concat.js","./today-m/**/index.css","./today-m/**/*.html"], ["browserSync"]);
 })
+gulp.task("lunbo-pc",["postcss","es2015"], ()=>{
+    browserSync.init({
+        server: "pc-carousel/"
+    });
+    gulp.watch("./pc-carousel/**/*.scss", ["postcss"]);
+    gulp.watch("./pc-carousel/**/private.js", ["es2015"]);
+    gulp.watch(["./pc-carousel/**/today-concat.js","./pc-carousel/**/index.css","./pc-carousel/**/*.html"], ["browserSync"]);
+})
 gulp.task("default",["pc-server"])
