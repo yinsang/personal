@@ -1,0 +1,75 @@
+/*手机端轮播图*/
+.user-lunbo-container{
+    position:relative;overflow:hidden;
+    .user-lunbo{
+        width:100%;height:3rem;
+
+        li{
+            width: 100%;position:absolute;
+            a{display:block;width: 100%;height:3rem;
+                img{width: 100%;height:100%;}
+            }
+        }
+        li.user-prev{left:-100%;}
+        li.user-next{left:100%;}
+        li.user-active{transition:1s all;left:0;}
+        li.user-move-prev{transition:1s all;}
+    }
+    /*.user-lunbo-icons{
+        position:absolute;
+        top:90%;margin-top:-0.125rem;
+        left:50%;
+        width:;
+        li{width: 0.25rem;height: 0.25rem;border-radius:0.125rem;border:1px solid #f5e;float:left;}
+    }*/
+    /*.user-lunbo-icons{
+        text-align:center;margin-top:-0.5rem;background: #555;z-index:2;
+        li{
+            display:inline-block;width: 0.25rem;height: 0.25rem;border-radius:0.125rem;border:1px solid #fff;
+        }
+    }*/
+    .user-lunbo-icons-container{
+        width:100%;position:absolute;bottom:0.0725rem;text-align:center;
+        .user-lunbo-icons{
+            display:inline-block;
+            li{
+                float:left;margin-right:0.2rem;
+                width:0.125rem;height:0.125rem;
+                border-radius:0.0625rem;
+                background: rgba(128,128,128,0.2);
+                /*.jindu{
+                    width:100%;height:100%;background: gray;
+                    border-radius:0.05rem;
+                    transform:scaleX(0);
+                    transform-origin:left;
+
+                }*/
+                .animation{
+                    /*transition:3s linear;*/
+                }
+                .transform{
+                    width:100%;
+                }
+            }
+            li.last{margin-right: 0;}
+            li.user-active{
+                box-shadow:0 0 0.05rem #fff;
+                background: #fff;
+            }
+        }
+    }
+}
+.test{
+    width: 50px;height: 50px;background: url(//m.360buyimg.com/cms/jfs/t3583/348/1234865154/46283/26daca56/581fe850N8f49cc9d.jpg);position:relative;z-index:2;
+     animation:muMove  5s infinite linear;
+}
+.inner-test{
+    width: 50px;height: 50px;margin-top: -20px;background: red;background: url(http://m.360buyimg.com/cms/jfs/t3724/331/948721062/89012/9053f559/58182b1fNc8c9d7ee.jpg);
+    animation:muMove  5s infinite linear;
+    z-index:1;
+}
+@keyframes muMove{
+    0{transform: rotate(0)}
+    100%{transform:rotate(360deg);}
+}
+
