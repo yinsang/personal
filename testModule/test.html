@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test loadSpaceImgAndAlink</title>
+</head>
+<body>
+    
+    <script src="common-js/jquery-3.1.0.min.js"></script>
+    
+    <script src="test2.js"></script> 
+    <ul>
+        <li>
+           <h1>test1:click Event</h1>
+            <div class="test1-container">
+                <div class="test1" href="javascript:;">baidu</div>
+            </div>
+            
+            <div class="result1">
+                
+            </div>
+            <script>
+
+            // 确定
+            // 1,任何时候都是先做事件和事件监听。冒泡在他们之后，即使delegeta到了父元素。父级上的监听先于父级event绑定之前。冒泡到父级点击总是是最后进行的。
+            // 2,onclick 会被下面的onclick覆盖，jq的click不会，故而jq的是绑定而不是属性函数替换。
+            // 疑惑：
+            // 1，js 的onclick没有jquery快，是为什么？
+            // 2，jq click1如果在 dom addEvent之前，就会把所有的jq事件执行完，再去管addEventListener，如果在addEvent后，就会先addEvent然后在管jq的一大串。为什么？
+            document.querySelector(".test1").onclick = function(){
+                document.querySelector(".result1").textContent +="js onclick ____"
+            }
+             document.querySelector(".test1").addEventListener("click", function(){
+                document.querySelector(".result1").textContent +="dom addEvent ____"
+            })
+            
+             $(".test1").click(function(a){
+                    document.querySelector(".result1").textContent +="jq click1 ____"
+                })
+           
+
+            $(".test1-container").on("click",$(".test1"),   function(){
+                    document.querySelector(".result1").textContent +=" dom delegete on parent ____"
+            })
+            $(".test1-container").click(function(){ 
+                document.querySelector(".result1").textContent +="jq click on parent ____"
+            })
+            
+            
+
+            $(".test1").on("click",function(b){
+                document.querySelector(".result1").textContent +="jq click delegate dom ____"
+            })
+            $(".test1").click(function(c){
+                document.querySelector(".result1").textContent +="jq click2 ____"
+            }) 
+            $(document).ready(function(){
+                // alert("r")
+            })
+            </script>
+            <div class="explain">
+                  首先执行a的href
+                  其次挨个执行click和jquery的onlick绑定的event；
+                  最后冒泡到document   
+            </div>
+        </li>
+    </ul>
+    // 
+</body>
+</html>
