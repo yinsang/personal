@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Error>
-  <Code>NoSuchKey</Code>
-  <Message>The specified key does not exist.</Message>
-  <RequestId>56C3C8F411BF3303531298E7</RequestId>
-  <HostId>xiamiimg.cn-hangzhou.oss-internal.aliyun-inc.com</HostId>
-  <Key>images/avatar_new/2294/1147299681455670588_1.jpg</Key>
-</Error>
