@@ -1,0 +1,56 @@
+@charset "utf-8";
+@-webkit-keyframes blink{
+    0% {opacity:1}
+    30%{left:100%;opactiy:1;;}
+    35%{opacity:0;}
+    100%{
+        opacity:0;
+    }
+}
+@keyframes blink{
+    0% {opacity:1}
+    30%{left:100%;opactiy:1;;}
+    35%{opacity:0;}
+    100%{
+        opacity:0;
+    }
+}
+.userdefined-153704{margin-bottom:0px!important;}
+.user-wrap0502{
+    background: #f3f0e8;
+    font-size: .18rem;   
+}
+.user-wrap0502 .span-div{display:block;
+}
+.user-wrap0502 .w-hide{display:none;
+}
+.user-wrap0502 a {background: transparent;color:#fff;display:block;
+}
+.user-wrap0502 a:focus {outline: thin dotted;
+}
+.user-wrap0502 a:active,.user-wrap0502 a:hover {outline: 0;
+}
+.user-wrap0502 a:link,.user-wrap0502 a:visited,.user-wrap0502 ins {text-decoration: none;color: rgb(93,93,93);
+}
+.user-wrap0502 .user-float-left{float:left;
+}
+.user-wrap0502 .user-float-right{float:right;
+}
+.user-wrap0502 .w-rev,.user-wrap0502 .user-rev{position:relative;
+}
+.user-wrap0502 .w-abs,.user-wrap0502 .user-abs{position:absolute;
+}
+.user-wrap0502 .user-footer{height: 20rem;
+}
+.user-wrap0502 .user-bold{font-weight: bold;
+}
+.user-wrap0502 .user-opacity0{opacity:0;
+}
+.user-wrap0502 html,.user-wrap0502 body{width:100%;
+}
+.user-wrap0502 .user-floors .user-floor a img{width: 100%;display:block;
+}
+.user-wrap0502 .user-floors .user-floor1 .user-anim{width: 5rem;height: 1.1rem;position:absolute;margin:auto;left:0;right:0;top:.8rem;overflow:hidden;
+}
+.user-wrap0502 .user-floors .user-floor1 .user-anim .user-blink{position: absolute;left: -1rem;top: 0;width: 1.8rem;height:1.15rem;background-image: -webkit-gradient(linear,left bottom, left top,from(rgba(255,255,255,0)),color-stop(rgba(255,255,255,0.5)),to(rgba(255,255,255,0)));background-image: -webkit-linear-gradient(bottom,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));background-image: linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.5),rgba(255,255,255,0));-webkit-transform: skewx(-25deg);-ms-transform: skewx(-25deg);transform: skewx(-25deg);-webkit-animation:blink 3s infinite;animation:blink 3s infinite;padding-top:1rem;
+} 
