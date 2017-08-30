@@ -1,6 +1,9 @@
 //by weiyinpeng
 function deepCopyObj(obj) {
-    var returnObj = Object.prototype.toString.call(obj) == "object object" ? {} : [];
+    if (!obj && typeof obj !== 'object') {
+        throw new Error('error arguments','shallowClone');
+    }
+    var returnObj = Object.prototype.toString.call(obj) == "[object Object]" ? {} : [];
     //此处o应该是window.JSON,无敌的window.JSON还可以用于object对比
     if (0) {
         returnObj = JSON.parse(JSON.stringify(obj))
@@ -44,6 +47,12 @@ var sym = Symbol("sss")
 var arr = [{
     c: 1
 }, 5, "love", s, undefined, null, true, NaN, sym]
-var arr1 = copyObj(arr)
-var arr2 = deepCopyObj(arr)
+var arr1 = deepCopyObj(arr)
+var arr2 = deepClone(arr) 
 console.log(arr, arr1, arr2)
+
+
+var obj = {z:{z1:4},a:"love",b:undefined,c:null,d:true,e:NaN,f:sym}
+var obj1 = deepCopyObj(obj)
+var obj2 = deepClone(obj)
+console.log(obj,obj1,obj2)
