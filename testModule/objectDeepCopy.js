@@ -11,6 +11,7 @@ function deepCopyObj(obj) {
         for (item in obj) {
             if (obj.hasOwnProperty(item)) {
                 let objProto = Object.prototype.toString.call(obj)
+                //类似new String() new Number()在lijiayi的function会出错
                 if (objProto === 'object object' || objProto === 'object array') {
                     //returnObj[item] = Array.isArray(obj[item]) ? [] : {}; 
                     console.log(obj[item])
