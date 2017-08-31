@@ -4,7 +4,7 @@ function deepCopyObj(obj) {
         throw new Error('error arguments','shallowClone');
     }
     var returnObj = Object.prototype.toString.call(obj) == "[object Object]" ? {} : [];
-    //此处o应该是window.JSON,无敌的window.JSON还可以用于object对比
+    //此处o应该是window.JSON,无敌的window.JSON还可以用于object对比,但却对function属性无动于衷
     if (0) {
         returnObj = JSON.parse(JSON.stringify(obj))
     } else {
