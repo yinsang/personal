@@ -1,4 +1,4 @@
-//by weiyinpeng
+//by yinsang
 function deepCopyObj(obj) {
     if (!obj && typeof obj !== 'object') {
         throw new Error('error arguments','shallowClone');
