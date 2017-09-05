@@ -3,22 +3,17 @@ function deepCopyObj(obj) {
     if (!obj && typeof obj !== 'object') {
         throw new Error('error arguments','shallowClone');
     }
-    var returnObj = Object.prototype.toString.call(obj) == "[object Object]" ? {} : [];
-    //此处o应该是window.JSON,无敌的window.JSON还可以用于object对比,但却对function属性无动于衷
-    if (0) {
-        returnObj = JSON.parse(JSON.stringify(obj))
-    } else {
-        for (item in obj) {
-            if (obj.hasOwnProperty(item)) {
-                let objProto = Object.prototype.toString.call(obj)
-                //类似new String() new Number()在lijiayi的function会出错
-                if (objProto === 'object object' || objProto === 'object array') {
-                    //returnObj[item] = Array.isArray(obj[item]) ? [] : {}; 
-                    console.log(obj[item])
-                    returnObj[item] = arguments.callee(obj[item])
-                } else {
-                    returnObj[item] = obj[item]
-                }
+    var objProto = Object.create(Object.getPrototypeOf(obj))
+    var returnObj = Object.prototype.toString.call(obj) == "[object Object]" ? objProto : [];
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            let objType = Object.prototype.toString.call(obj[key])
+            if (objType === '[object Object]' || objType === '[object Array]') {
+                returnObj[key] = Array.isArray(obj[key]) ? [] : {}; 
+                console.log(obj[key])
+                returnObj[key] = arguments.callee(obj[key])
+            } else {
+                returnObj[key] = obj[key]
             }
         }
     }
