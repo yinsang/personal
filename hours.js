@@ -3,7 +3,7 @@ var obj = [];
 var hours = 0;
 var days = 0;
 console.error('计算');
-for (var i = 0; i < doms.length; i++) {
+for (var i = 0; i < doms.length - 1; i++) {
     if (doms[i].parentElement.parentElement.parentElement.className !== "not-work-day") {
         if (doms[i].innerHTML !== "-") {
             days++;
@@ -17,4 +17,4 @@ for (var i = 0; i < doms.length; i++) {
         }
     }
 }
-console.log(hours/days);
+console.log("仅计算工作日工时（已删除旷工）："hours/days);
