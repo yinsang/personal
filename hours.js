@@ -17,4 +17,4 @@ for (var i = 0; i < doms.length - 1; i++) {
         }
     }
 }
-console.log("仅计算工作日工时（已删除旷工）："hours/days);
+console.log("仅计算工作日工时（已删除旷工）：" + hours/days);
